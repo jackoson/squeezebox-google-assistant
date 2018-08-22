@@ -1,0 +1,5 @@
+client_secret_*
+creds.*
+gactions
+do
+__pycache__
