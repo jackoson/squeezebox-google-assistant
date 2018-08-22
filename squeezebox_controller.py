@@ -3,8 +3,10 @@ import requests
 url = "http://192.168.1.126:9000/jsonrpc.js"
 
 commands = {
-  "PLAY": "play",
-  "PAUSE": "pause"
+  "PLAY": ["play"],
+  "PAUSE": ["pause"],
+  "POWER ON": ["power", "1"],
+  "POWER OFF": ["power", "0"]
 }
 
 players = {
@@ -27,7 +29,7 @@ def sendSqueezeBoxCommand(details):
   return send_command(players[details['room']], commands[details['command']])
 
 def send_command(player, command):
-  payload = {'method': 'slim.request', 'params': [player, [command]]}
+  payload = {'method': 'slim.request', 'params': [player, command]}
   req = requests.post(url, json=payload)
   return req.status_code == 200
 

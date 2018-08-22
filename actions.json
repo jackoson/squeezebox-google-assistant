@@ -183,7 +183,24 @@
                 {
                     "key": "PAUSE",
                     "synonyms": [
-                        "pause"
+                        "pause",
+                        "stop"
+                    ]
+                },
+                {
+                    "key": "POWER ON",
+                    "synonyms": [
+                        "switch on",
+                        "power on",
+                        "on"
+                    ]
+                },
+                {
+                    "key": "POWER OFF",
+                    "synonyms": [
+                        "switch off",
+                        "power off",
+                        "off"
                     ]
                 }
             ]
