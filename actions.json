@@ -80,7 +80,8 @@
                 ],
                 "trigger": {
                     "queryPatterns": [
-                        "$Room:room squeezebox $Command:command"
+                        "$Room:room squeezebox $Command:command",
+                        "$Command:command $Room:room squeezebox"
                     ]
                 }
             },
@@ -99,6 +100,56 @@
                                     "params": {
                                         "room": "$room",
                                         "command": "$command"
+                                    }
+                                }
+                            }
+                        ]
+                    }
+                }
+            }
+        },
+        {
+            "name": "com.example.actions.SqueezeBoxSearch",
+            "availability": {
+                "deviceClasses": [
+                    {
+                        "assistantSdkDevice": {}
+                    }
+                ]
+            },
+            "intent": {
+                "name": "com.example.intents.SqueezeBoxSearch",
+                "parameters": [
+                    {
+                        "name": "room",
+                        "type": "Room"
+                    },
+                    {
+                        "name": "term",
+                        "type": "SchemaOrg_Text"
+                    }
+                ],
+                "trigger": {
+                    "queryPatterns": [
+                        "$Room:room squeezebox search $SchemaOrg_Text:term"
+                    ]
+                }
+            },
+            "fulfillment": {
+                "staticFulfillment": {
+                    "templatedResponse": {
+                        "items": [
+                            {
+                                "simpleResponse": {
+                                    "textToSpeech": "playing song matching $term"
+                                }
+                            },
+                            {
+                                "deviceExecution": {
+                                    "command": "com.example.commands.SqueezeBoxSearch",
+                                    "params": {
+                                        "room": "$room",
+                                        "term": "$term"
                                     }
                                 }
                             }

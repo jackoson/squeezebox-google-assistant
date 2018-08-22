@@ -88,7 +88,8 @@ def process_event(event):
                 app_controller.sendApplianceCommand(params)
             elif command == "com.example.commands.SqueezeBoxCommand":
                 squeeze_controller.sendSqueezeBoxCommand(params)
-
+            elif command == "com.example.commands.SqueezeBoxSearch":
+                squeeze_controller.squeezeboxSearchAndPlay(params)
 
 
 def main():
@@ -124,7 +125,7 @@ def main():
     args = parser.parse_args()
 
     if args.logfile:
-        sys.stdout = Logger(args.logfile)
+        sys.stdout = sys.stderr = Logger(args.logfile)
 
     with open(args.credentials, 'r') as f:
         credentials = google.oauth2.credentials.Credentials(token=None,
