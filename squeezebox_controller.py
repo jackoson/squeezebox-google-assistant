@@ -8,7 +8,9 @@ commands = {
 }
 
 players = {
-  "SAMS BEDROOM": "b8:27:eb:ef:48:df"
+  "SAMS BEDROOM": "b8:27:eb:ef:48:df",
+  "KITCHEN":"00:04:20:05:b2:d8", 
+  "UPSTAIRS BATHROOM":"00:04:20:12:6e:96"
 }
 
 def sendSqueezeBoxCommand(details):
