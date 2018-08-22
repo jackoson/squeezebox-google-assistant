@@ -1,0 +1,217 @@
+{
+    "manifest": {
+        "displayName": "Tygarwen Interface",
+        "invocationName": "Tygarwen Interface",
+        "category": "PRODUCTIVITY"
+    },
+    "actions": [
+        {
+            "name": "com.example.actions.OnOffAppliance",
+            "availability": {
+                "deviceClasses": [
+                    {
+                        "assistantSdkDevice": {}
+                    }
+                ]
+            },
+            "intent": {
+                "name": "com.example.intents.OnOffAppliance",
+                "parameters": [
+                    {
+                        "name": "state",
+                        "type": "OnOff"
+                    },
+                    {
+                        "name": "appliance",
+                        "type": "Appliance"
+                    }
+                ],
+                "trigger": {
+                    "queryPatterns": [
+                        "(turn)? $Appliance:appliance $OnOff:state",
+                        "turn $OnOff:state (the)? $Appliance:appliance",
+                        "$Appliance:appliance (turn)? $OnOff:state"
+                    ]
+                }
+            },
+            "fulfillment": {
+                "staticFulfillment": {
+                    "templatedResponse": {
+                        "items": [
+                            {
+                                "simpleResponse": {
+                                    "textToSpeech": "turning $appliance $state"
+                                }
+                            },
+                            {
+                                "deviceExecution": {
+                                    "command": "com.example.commands.OnOffAppliance",
+                                    "params": {
+                                        "appliance": "$appliance",
+                                        "state": "$state"
+                                    }
+                                }
+                            }
+                        ]
+                    }
+                }
+            }
+        },
+        {
+            "name": "com.example.actions.SqueezeBoxCommand",
+            "availability": {
+                "deviceClasses": [
+                    {
+                        "assistantSdkDevice": {}
+                    }
+                ]
+            },
+            "intent": {
+                "name": "com.example.intents.SqueezeBoxCommand",
+                "parameters": [
+                    {
+                        "name": "command",
+                        "type": "Command"
+                    },
+                    {
+                        "name": "room",
+                        "type": "Room"
+                    }
+                ],
+                "trigger": {
+                    "queryPatterns": [
+                        "$Room:room squeezebox $Command:command"
+                    ]
+                }
+            },
+            "fulfillment": {
+                "staticFulfillment": {
+                    "templatedResponse": {
+                        "items": [
+                            {
+                                "simpleResponse": {
+                                    "textToSpeech": "$room squeezebox $command"
+                                }
+                            },
+                            {
+                                "deviceExecution": {
+                                    "command": "com.example.commands.SqueezeBoxCommand",
+                                    "params": {
+                                        "room": "$room",
+                                        "command": "$command"
+                                    }
+                                }
+                            }
+                        ]
+                    }
+                }
+            }
+        }
+    ],
+    "types": [
+        {
+            "name": "$OnOff",
+            "entities": [
+                {
+                    "key": "ON",
+                    "synonyms": [
+                        "on",
+                        "bright"
+                    ]
+                },
+                {
+                    "key": "OFF",
+                    "synonyms": [
+                        "off",
+                        "dark"
+                    ]
+                }
+            ]
+        },
+        {
+            "name": "$Appliance",
+            "entities": [
+                {
+                    "key": "LANDING LIGHTS",
+                    "synonyms": [
+                        "landing lights",
+                        "landing"
+                    ]
+                },
+                {
+                    "key": "UPSTAIRS BATHROOM MAIN LIGHTS",
+                    "synonyms": [
+                        "upstairs bathroom main lights",
+                        "upstairs bathroom lights",
+                        "upstairs bathroom",
+                        "bathroom lights",
+                        "bathroom"
+                    ]
+                },
+                {
+                    "key": "HALL LIGHTS",
+                    "synonyms": [
+                        "hall lights",
+                        "hall"
+                    ]
+                },
+                {
+                    "key": "KITCHEN MAIN LIGHTS",
+                    "synonyms": [
+                        "kitchen main lights",
+                        "kitchen lights",
+                        "kitchen"
+                    ]
+                },
+                {
+                    "key": "KITCHEN CUPBOARD LIGHTS",
+                    "synonyms": [
+                        "kitchen cupboard lights"
+                    ]
+                }
+            ]
+        },
+        {
+            "name": "$Command",
+            "entities": [
+                {
+                    "key": "PLAY",
+                    "synonyms": [
+                        "play"
+                    ]
+                },
+                {
+                    "key": "PAUSE",
+                    "synonyms": [
+                        "pause"
+                    ]
+                }
+            ]
+        },
+        {
+            "name": "$Room",
+            "entities": [
+                {
+                    "key": "SAMS BEDROOM",
+                    "synonyms": [
+                        "sam's bedroom",
+                        "sam's room"
+                    ]
+                },
+                {
+                    "key": "UPSTAIRS BATHROOM",
+                    "synonyms": [
+                        "upstairs bathroom",
+                        "bathroom"
+                    ]
+                },
+                {
+                    "key": "KITCHEN",
+                    "synonyms": [
+                        "kitchen"
+                    ]
+                }
+            ]
+        }
+    ]
+}
