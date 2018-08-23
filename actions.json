@@ -162,6 +162,56 @@
                     }
                 }
             }
+        },
+        {
+            "name": "com.example.actions.SqueezeBoxVolume",
+            "availability": {
+                "deviceClasses": [
+                    {
+                        "assistantSdkDevice": {}
+                    }
+                ]
+            },
+            "intent": {
+                "name": "com.example.intents.SqueezeBoxVolume",
+                "parameters": [
+                    {
+                        "name": "room",
+                        "type": "Room"
+                    },
+                    {
+                        "name": "percent",
+                        "type": "SchemaOrg_Number"
+                    }
+                ],
+                "trigger": {
+                    "queryPatterns": [
+                        "($Room:room)? squeezebox volume $SchemaOrg_Number:percent percent"
+                    ]
+                }
+            },
+            "fulfillment": {
+                "staticFulfillment": {
+                    "templatedResponse": {
+                        "items": [
+                            {
+                                "simpleResponse": {
+                                    "textToSpeech": "changing volume to $percent percent"
+                                }
+                            },
+                            {
+                                "deviceExecution": {
+                                    "command": "com.example.commands.SqueezeBoxVolume",
+                                    "params": {
+                                        "room": "$room",
+                                        "percent": "$percent"
+                                    }
+                                }
+                            }
+                        ]
+                    }
+                }
+            }
         }
     ],
     "types": [
