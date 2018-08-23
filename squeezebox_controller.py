@@ -16,8 +16,6 @@ commands = {
 
 player_macs = {}
 
-populate_player_macs()
-
 search_types = {
   "SONG": "track",
   "ALBUM": "album",
@@ -121,3 +119,5 @@ if __name__ == "__main__":
   # searchAndPlay({"room": "UPSTAIRS BATHROOM", "term": "hall of the mountain"})
   searchAndPlay({"room": "SAMS BEDROOM", "type": "ARTIST", "term": "queen"})
 
+
+populate_player_macs()
