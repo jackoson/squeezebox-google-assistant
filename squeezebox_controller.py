@@ -25,6 +25,7 @@ search_types = {
   "ALBUM": "album",
   "ARTIST": "contributor"
 }
+default_search_type = "SONG"
 
 def cachePlayer(f):
   player = None
@@ -61,7 +62,10 @@ def searchAndPlay(details):
     raise Exception("player must be one of: " + str(players.keys()))
   if details['term'] == "":
     raise Exception("Search term cannot be empty")
-  if details['type'] not in search_types:
+    
+  if details['type'] == '$type':
+    details['type'] = default_search_type
+  elif details['type'] not in search_types:
     raise Exception("Search type must be one of: " + str(search_types.keys()))
     
   result = send_command(players[details['room']], ["search", 0, 1, "term:" + details["term"]])["result"]
