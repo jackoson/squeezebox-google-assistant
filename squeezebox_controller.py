@@ -102,7 +102,7 @@ def setVolume(details):
 
 
 def populate_player_macs():
-  player_macs = {}
+  global player_macs = {}
   count = int(make_request('-', ["player","count", "?"])['result']['_count'])
   for player in make_request('-', ["players","0", count])['result']['players_loop']:
     # get rid of the thing in brackets at the end
