@@ -9,7 +9,8 @@ commands = {
   "POWER ON": ["power", "1"],
   "POWER OFF": ["power", "0"],
   "VOLUME UP": ["mixer","volume","2"],
-  "VOLUME DOWN": ["mixer","volume","-2"]
+  "VOLUME DOWN": ["mixer","volume","-2"],
+  "SLEEP": ["sleep","300"]
 }
 
 players = {

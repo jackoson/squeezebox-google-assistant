@@ -273,6 +273,12 @@
                         "quieter",
                         "make quieter"
                     ]
+                },
+                {
+                    "key": "SLEEP",
+                    "synonyms": [
+                        "sleep"
+                    ]
                 }
             ]
         },
