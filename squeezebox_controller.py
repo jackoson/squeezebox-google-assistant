@@ -109,7 +109,6 @@ def populate_player_macs():
     # get rid of the thing in brackets at the end
     name = player['name'].split("(", 1)[0][:-1]
     player_macs[name] = player['playerid']
-  print(player_macs)
 
   
 def make_request(player, command):
