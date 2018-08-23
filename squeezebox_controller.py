@@ -20,6 +20,12 @@ players = {
   "UPSTAIRS BATHROOM":"00:04:20:12:6e:96"
 }
 
+search_types = {
+  "SONG": "track",
+  "ALBUM": "album",
+  "ARTIST": "contributor"
+}
+
 def sendSqueezeBoxCommand(details):
   if "room" not in details:
     raise Exception("Room not specified")
@@ -39,19 +45,27 @@ def squeezeboxSearchAndPlay(details):
     raise Exception("Room not specified")
   elif "term" not in details:
     raise Exception("Search term not specified")
+  elif "type" not in details:
+    raise Exception("Search type not specified")
 
   if details['room'] not in players:
     raise Exception("player must be one of: " + str(players.keys()))
   if details['term'] == "":
     raise Exception("Search term cannot be empty")
-
+  if details['type'] not in search_types:
+    raise Exception("Search type must be one of: " + str(search_types.keys()))
+    
   result = send_command(players[details['room']], ["search", 0, 1, "term:" + details["term"]])["result"]
+  print(result)
+  type = search_types[details['type']]
+  if type+'s_loop' not in result or len(result[type+'s_loop']) < 1:
+    print("No " + type + " matching: " + details["term"])
+    return
 
-  if "tracks_loop" not in result:
-    raise Exception("No tracks matching: " + details["term"])
-
-  track = result["tracks_loop"][0]
-  send_command(players[details['room']], ["playlistcontrol", "track_id:" + str(track["track_id"]), "cmd:load"])
+  entity = result[type+'s_loop'][0]
+  entity_id = entity[type+'_id']
+  entity_id_type = 'artist_id:' if details['type'] == "ARTIST" else type+"_id:"
+  send_command(players[details['room']], ["playlistcontrol", "cmd:load", entity_id_type + str(entity_id)])
 
 
 def send_command(player, command):
@@ -61,4 +75,4 @@ def send_command(player, command):
 
 if __name__ == "__main__":
   # squeezeboxSearchAndPlay({"room": "UPSTAIRS BATHROOM", "term": "hall of the mountain"})
-  squeezeboxSearchAndPlay({"room": "KITCHEN", "term": "Final Countdown"})
+  squeezeboxSearchAndPlay({"room": "SAMS BEDROOM", "type": "ARTIST", "term": "queen"})
