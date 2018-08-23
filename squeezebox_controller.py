@@ -15,6 +15,7 @@ commands = {
 }
 
 player_macs = {}
+cached_player = None
 
 search_types = {
   "SONG": "track",
@@ -24,13 +25,12 @@ search_types = {
 default_search_type = "SONG"
 
 def cache_player(f):
-  player = None
   def cached_f(details):
-    nonlocal player
-    if (not player == None) and ("room" not in details or details["room"] == "$room"):
-      details["room"] = player
+    global cached_player
+    if (not cached_player == None) and ("room" not in details or details["room"] == "$room"):
+      details["room"] = cached_player
     else:
-      player = details['room']
+      cached_player = details['room']
     f(details)
   return cached_f
 
