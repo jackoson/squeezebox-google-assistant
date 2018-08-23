@@ -8,8 +8,8 @@ commands = {
   "PAUSE": ["pause"],
   "POWER ON": ["power", "1"],
   "POWER OFF": ["power", "0"],
-  "VOLUME UP": ["mixer","volume","2"],
-  "VOLUME DOWN": ["mixer","volume","-2"],
+  "VOLUME UP": ["mixer","volume","10"],
+  "VOLUME DOWN": ["mixer","volume","-10"],
   "SLEEP": ["sleep","300"]
 }
 
