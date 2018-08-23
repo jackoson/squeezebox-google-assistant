@@ -279,6 +279,12 @@
                     "synonyms": [
                         "sleep"
                     ]
+                },
+                {
+                    "key": "SLEEP SONG",
+                    "synonyms": [
+                        "sleep song"
+                    ]
                 }
             ]
         },
