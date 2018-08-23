@@ -14,11 +14,9 @@ commands = {
   "SLEEP SONG": ["jiveendoftracksleep"]
 }
 
-players = {
-  "SAMS BEDROOM": "b8:27:eb:ef:48:df",
-  "KITCHEN":"00:04:20:05:b2:d8", 
-  "UPSTAIRS BATHROOM":"00:04:20:12:6e:96"
-}
+player_macs = {}
+
+populate_player_macs()
 
 search_types = {
   "SONG": "track",
@@ -47,10 +45,10 @@ def simpleCommand(details):
 
   if details['command'] not in commands:
     raise Exception("command must be one of: " + str(commands.keys()))
-  if details['room'] not in players:
-    raise Exception("player must be one of: " + str(players.keys()))
+  if details['room'] not in player_macs:
+    raise Exception("player must be one of: " + str(player_macs.keys()))
 
-  send_command(players[details['room']], commands[details['command']])
+  make_request(player_macs[details['room']], commands[details['command']])
 
 @cachePlayer
 def searchAndPlay(details):
@@ -61,8 +59,8 @@ def searchAndPlay(details):
   elif "type" not in details:
     raise Exception("Search type not specified")
 
-  if details['room'] not in players:
-    raise Exception("player must be one of: " + str(players.keys()))
+  if details['room'] not in player_macs:
+    raise Exception("player must be one of: " + str(player_macs.keys()))
   if details['term'] == "":
     raise Exception("Search term cannot be empty")
     
@@ -71,7 +69,7 @@ def searchAndPlay(details):
   elif details['type'] not in search_types:
     raise Exception("Search type must be one of: " + str(search_types.keys()))
     
-  result = send_command(players[details['room']], ["search", 0, 1, "term:" + details["term"]])["result"]
+  result = make_request(player_macs[details['room']], ["search", 0, 1, "term:" + details["term"]])["result"]
 
   type = search_types[details['type']]
   if type+'s_loop' not in result or len(result[type+'s_loop']) < 1:
@@ -81,7 +79,7 @@ def searchAndPlay(details):
   entity = result[type+'s_loop'][0]
   entity_id = entity[type+'_id']
   entity_id_type = 'artist_id:' if details['type'] == "ARTIST" else type+"_id:"
-  send_command(players[details['room']], ["playlistcontrol", "cmd:load", entity_id_type + str(entity_id)])
+  make_request(player_macs[details['room']], ["playlistcontrol", "cmd:load", entity_id_type + str(entity_id)])
 
   
 @cachePlayer
@@ -91,8 +89,8 @@ def setVolume(details):
   elif "percent" not in details:
     raise Exception("Percentage not specified")
   
-  if details['room'] not in players:
-    raise Exception("player must be one of: " + str(players.keys()))
+  if details['room'] not in player_macs:
+    raise Exception("player must be one of: " + str(player_macs.keys()))
   
   try:
     percent = int(details['percent'])
@@ -102,10 +100,19 @@ def setVolume(details):
   if percent < 0 or percent > 100:
     raise Exception("Percentage must be a integer")
     
-  send_command(players[details['room']], ["mixer","volume",str(percent)])
+  make_request(player_macs[details['room']], ["mixer","volume",str(percent)])
 
 
-def send_command(player, command):
+def populate_player_macs():
+  player_macs = {}
+  count = int(make_request('-', ["player","count", "?"])['result']['_count'])
+  for player in make_request('-', ["players","0", count])['result']['players_loop']:
+    # get rid of the thing in brackets at the end
+    name = player['name'].split("(", 1)[0][-1]
+    player_macs[name] = player['playerid']
+
+  
+def make_request(player, command):
   payload = {'method': 'slim.request', 'params': [player, command]}
   req = requests.post(url, json=payload)
   return json.loads(req.content.decode("ascii"))
@@ -113,3 +120,4 @@ def send_command(player, command):
 if __name__ == "__main__":
   # searchAndPlay({"room": "UPSTAIRS BATHROOM", "term": "hall of the mountain"})
   searchAndPlay({"room": "SAMS BEDROOM", "type": "ARTIST", "term": "queen"})
+
