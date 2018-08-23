@@ -32,6 +32,8 @@ def cachePlayer(f):
   def cached_f(details):
     if (not player == None) and ("room" not in details or details["room"] == "$room"):
       details["room"] = player
+    else:
+      player = details['room']
     f(details)
   return cached_f
 
