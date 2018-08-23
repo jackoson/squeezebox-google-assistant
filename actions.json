@@ -347,11 +347,14 @@
             "name": "$Room",
             "entities": [
                 {
-                    "key": "SAMS BEDROOM",
+                    "key": "Sam's Bedroom",
                     "synonyms": [
                         "sam's bedroom",
                         "sam's room",
                         "sam's",
+                        "sam bedroom",
+                        "sam room",
+                        "sam",
                         "samuel's bedroom",
                         "samuel's room",
                         "samuel's",
@@ -361,10 +364,57 @@
                     ]
                 },
                 {
-                    "key": "UPSTAIRS BATHROOM",
+                    "key": "Bathroom2",
                     "synonyms": [
                         "upstairs bathroom",
-                        "bathroom"
+                        "bathroom",
+                        "bathroom 2"
+                    ]
+                },
+                {
+                    "key": "Georgina",
+                    "synonyms": [
+                        "georgina's bedroom",
+                        "georgina's room",
+                        "georgina's",
+                        "georgina bedroom",
+                        "georgina room",
+                        "georgina"
+                    ]
+                },
+                {
+                    "key": "Lounge",
+                    "synonyms": [
+                        "living room",
+                        "lounge"
+                    ]
+                },
+                {
+                    "key": "Bathroom",
+                    "synonyms": [
+                        "downstairs bathroom",
+                        "bathroom",
+                        "mum and dad's bathroom"
+                    ]
+                },
+                {
+                    "key": "Bedroom",
+                    "synonyms": [
+                        "bedroom",
+                        "mum and dad's bedroom"
+                    ]
+                },
+                {
+                    "key": "Conservatory",
+                    "synonyms": [
+                        "conservatory"
+                    ]
+                },
+                {
+                    "key": "Patio",
+                    "synonyms": [
+                        "patio",
+                        "outside"
                     ]
                 },
                 {
