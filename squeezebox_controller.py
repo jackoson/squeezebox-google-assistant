@@ -30,6 +30,7 @@ default_search_type = "SONG"
 def cachePlayer(f):
   player = None
   def cached_f(details):
+    nonlocal player
     if (not player == None) and ("room" not in details or details["room"] == "$room"):
       details["room"] = player
     else:
