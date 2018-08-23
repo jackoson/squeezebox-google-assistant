@@ -90,7 +90,7 @@ def process_event(event):
                   squeeze_controller.set_volume(params)
             except Exception as e:
               print('There was an error while trying to complete your request')
-              print(e.message)
+              print(str(e))
     else:
       print(event)
 
