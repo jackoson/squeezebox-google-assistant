@@ -127,11 +127,15 @@
                     {
                         "name": "term",
                         "type": "SchemaOrg_Text"
+                    },
+                    {
+                        "name": "type",
+                        "type": "SearchType"
                     }
                 ],
                 "trigger": {
                     "queryPatterns": [
-                        "$Room:room squeezebox search $SchemaOrg_Text:term"
+                        "$Room:room squeezebox search ($SearchType:type)? $SchemaOrg_Text:term"
                     ]
                 }
             },
@@ -141,7 +145,7 @@
                         "items": [
                             {
                                 "simpleResponse": {
-                                    "textToSpeech": "playing song matching $term"
+                                    "textToSpeech": "playing $type matching $term"
                                 }
                             },
                             {
@@ -149,7 +153,8 @@
                                     "command": "com.example.commands.SqueezeBoxSearch",
                                     "params": {
                                         "room": "$room",
-                                        "term": "$term"
+                                        "term": "$term",
+                                        "type": "$type"
                                     }
                                 }
                             }
@@ -295,7 +300,8 @@
                     "key": "SAMS BEDROOM",
                     "synonyms": [
                         "sam's bedroom",
-                        "sam's room"
+                        "sam's room",
+                        "sam's"
                     ]
                 },
                 {
@@ -309,6 +315,31 @@
                     "key": "KITCHEN",
                     "synonyms": [
                         "kitchen"
+                    ]
+                }
+            ]
+        },
+        {
+            "name": "$SearchType",
+            "entities": [
+                {
+                    "key": "SONG",
+                    "synonyms": [
+                        "song",
+                        "track"
+                    ]
+                },
+                {
+                    "key": "ARTIST",
+                    "synonyms": [
+                        "artist",
+                        "group"
+                    ]
+                },
+                {
+                    "key": "ALBUM",
+                    "synonyms": [
+                        "album"
                     ]
                 }
             ]
