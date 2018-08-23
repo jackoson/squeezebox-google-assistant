@@ -87,11 +87,11 @@ def process_event(event):
             if command == "com.example.commands.OnOffAppliance":
                 app_controller.sendApplianceCommand(params)
             elif command == "com.example.commands.SqueezeBoxCommand":
-                squeeze_controller.simpleCommand(params)
+                squeeze_controller.simple_command(params)
             elif command == "com.example.commands.SqueezeBoxSearch":
-                squeeze_controller.searchAndPlay(params)
+                squeeze_controller.search_and_play(params)
             elif command == "com.example.commands.SqueezeBoxVolume":
-                squeeze_controller.setVolume(params)
+                squeeze_controller.set_volume(params)
 
 
 def main():
