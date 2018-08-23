@@ -72,7 +72,7 @@ def searchAndPlay(details):
     raise Exception("Search type must be one of: " + str(search_types.keys()))
     
   result = send_command(players[details['room']], ["search", 0, 1, "term:" + details["term"]])["result"]
-  print(result)
+
   type = search_types[details['type']]
   if type+'s_loop' not in result or len(result[type+'s_loop']) < 1:
     print("No " + type + " matching: " + details["term"])
@@ -82,6 +82,27 @@ def searchAndPlay(details):
   entity_id = entity[type+'_id']
   entity_id_type = 'artist_id:' if details['type'] == "ARTIST" else type+"_id:"
   send_command(players[details['room']], ["playlistcontrol", "cmd:load", entity_id_type + str(entity_id)])
+
+  
+@cachePlayer
+def setVolume(details):
+  if "room" not in details:
+    raise Exception("Room not specified")
+  elif "percent" not in details:
+    raise Exception("Percentage not specified")
+  
+  if details['room'] not in players:
+    raise Exception("player must be one of: " + str(players.keys()))
+  
+  try:
+    percent = int(details['percent'])
+  except:
+    raise Exception("Percentage must be a integer")
+    
+  if percent < 0 or percent > 100:
+    raise Exception("Percentage must be a integer")
+    
+  send_command(players[details['room']], ["mixer","volume",str(percent)])
 
 
 def send_command(player, command):
