@@ -26,7 +26,16 @@ search_types = {
   "ARTIST": "contributor"
 }
 
-def sendSqueezeBoxCommand(details):
+def cachePlayer(f):
+  player = None
+  def cached_f(details):
+    if (not player == None) and ("room" not in details or details["room"] == "$room"):
+      details["room"] = player
+    f(details)
+  return cached_f
+
+@cachePlayer
+def simpleCommand(details):
   if "room" not in details:
     raise Exception("Room not specified")
   elif "command" not in details:
@@ -39,8 +48,8 @@ def sendSqueezeBoxCommand(details):
 
   send_command(players[details['room']], commands[details['command']])
 
-
-def squeezeboxSearchAndPlay(details):
+@cachePlayer
+def searchAndPlay(details):
   if "room" not in details:
     raise Exception("Room not specified")
   elif "term" not in details:
@@ -74,5 +83,5 @@ def send_command(player, command):
   return json.loads(req.content.decode("ascii"))
 
 if __name__ == "__main__":
-  # squeezeboxSearchAndPlay({"room": "UPSTAIRS BATHROOM", "term": "hall of the mountain"})
-  squeezeboxSearchAndPlay({"room": "SAMS BEDROOM", "type": "ARTIST", "term": "queen"})
+  # searchAndPlay({"room": "UPSTAIRS BATHROOM", "term": "hall of the mountain"})
+  searchAndPlay({"room": "SAMS BEDROOM", "type": "ARTIST", "term": "queen"})

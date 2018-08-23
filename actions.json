@@ -80,8 +80,8 @@
                 ],
                 "trigger": {
                     "queryPatterns": [
-                        "$Room:room squeezebox $Command:command",
-                        "$Command:command $Room:room squeezebox"
+                        "($Room:room)? squeezebox $Command:command",
+                        "$Command:command ($Room:room)? squeezebox"
                     ]
                 }
             },
@@ -135,7 +135,7 @@
                 ],
                 "trigger": {
                     "queryPatterns": [
-                        "$Room:room squeezebox search ($SearchType:type)? $SchemaOrg_Text:term"
+                        "($Room:room)? squeezebox search ($SearchType:type)? $SchemaOrg_Text:term"
                     ]
                 }
             },
