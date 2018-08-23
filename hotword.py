@@ -79,14 +79,18 @@ def process_event(event):
     if event.type == EventType.ON_DEVICE_ACTION:
         for command, params in event.actions:
             print('Do command', command, 'with params', str(params))
-            if command == "com.example.commands.OnOffAppliance":
-                app_controller.sendApplianceCommand(params)
-            elif command == "com.example.commands.SqueezeBoxCommand":
-                squeeze_controller.simple_command(params)
-            elif command == "com.example.commands.SqueezeBoxSearch":
-                squeeze_controller.search_and_play(params)
-            elif command == "com.example.commands.SqueezeBoxVolume":
-                squeeze_controller.set_volume(params)
+            try:
+              if command == "com.example.commands.OnOffAppliance":
+                  app_controller.sendApplianceCommand(params)
+              elif command == "com.example.commands.SqueezeBoxCommand":
+                  squeeze_controller.simple_command(params)
+              elif command == "com.example.commands.SqueezeBoxSearch":
+                  squeeze_controller.search_and_play(params)
+              elif command == "com.example.commands.SqueezeBoxVolume":
+                  squeeze_controller.set_volume(params)
+            except Exception as e:
+              print('There was an error while trying to complete your request')
+              print(e.message)
     else:
       print(event)
 
