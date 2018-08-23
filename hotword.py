@@ -76,11 +76,6 @@ def process_event(event):
     if event.type == EventType.ON_CONVERSATION_TURN_STARTED:
         print()
 
-    print(event)
-
-    if (event.type == EventType.ON_CONVERSATION_TURN_FINISHED and
-            event.args and not event.args['with_follow_on_turn']):
-        print()
     if event.type == EventType.ON_DEVICE_ACTION:
         for command, params in event.actions:
             print('Do command', command, 'with params', str(params))
@@ -92,6 +87,13 @@ def process_event(event):
                 squeeze_controller.search_and_play(params)
             elif command == "com.example.commands.SqueezeBoxVolume":
                 squeeze_controller.set_volume(params)
+    else:
+      print(event)
+
+    if (event.type == EventType.ON_CONVERSATION_TURN_FINISHED and
+            event.args and not event.args['with_follow_on_turn']):
+        print()
+    
 
 
 def main():
