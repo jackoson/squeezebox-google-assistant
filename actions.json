@@ -340,6 +340,22 @@
                     "synonyms": [
                         "sleep song"
                     ]
+                },
+                {
+                    "key": "SKIP",
+                    "synonyms": [
+                        "skip",
+                        "skip song",
+                        "next"
+                    ]
+                },
+                {
+                    "key": "PREVIOUS",
+                    "synonyms": [
+                        "previous",
+                        "go back",
+                        "back"
+                    ]
                 }
             ]
         },

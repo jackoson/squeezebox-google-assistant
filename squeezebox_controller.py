@@ -11,7 +11,9 @@ commands = {
   "VOLUME UP": ["mixer","volume","+10"],
   "VOLUME DOWN": ["mixer","volume","-10"],
   "SLEEP": ["sleep","300"],
-  "SLEEP SONG": ["jiveendoftracksleep"]
+  "SLEEP SONG": ["jiveendoftracksleep"],
+  "SKIP": ["playlist","index","+1"],
+  "PREVIOUS": ["playlist","index","-1"]
 }
 
 player_macs = {}
