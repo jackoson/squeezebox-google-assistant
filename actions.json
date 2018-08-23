@@ -186,7 +186,7 @@
                 ],
                 "trigger": {
                     "queryPatterns": [
-                        "($Room:room)? squeezebox volume $SchemaOrg_Number:percent percent"
+                        "($Room:room)? squeezebox volume $SchemaOrg_Number:percent %"
                     ]
                 }
             },
