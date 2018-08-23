@@ -243,6 +243,7 @@
                     "synonyms": [
                         "switch on",
                         "power on",
+                        "turn on",
                         "on"
                     ]
                 },
@@ -251,7 +252,26 @@
                     "synonyms": [
                         "switch off",
                         "power off",
+                        "turn off",
                         "off"
+                    ]
+                },
+                {
+                    "key": "VOLUME UP",
+                    "synonyms": [
+                        "volume up",
+                        "turn up",
+                        "louder",
+                        "make louder"
+                    ]
+                },
+                {
+                    "key": "VOLUME DOWN",
+                    "synonyms": [
+                        "volume down",
+                        "turn down",
+                        "quieter",
+                        "make quieter"
                     ]
                 }
             ]
