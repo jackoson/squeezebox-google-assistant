@@ -90,6 +90,8 @@ def process_event(event):
                 squeeze_controller.simpleCommand(params)
             elif command == "com.example.commands.SqueezeBoxSearch":
                 squeeze_controller.searchAndPlay(params)
+            elif command == "com.example.commands.SqueezeBoxVolume":
+                squeeze_controller.setVolume(params)
 
 
 def main():
