@@ -28,7 +28,7 @@
                 ],
                 "trigger": {
                     "queryPatterns": [
-                        "(turn)? $Appliance:appliance $OnOff:state",
+                        "(turn)? (the)? $Appliance:appliance $OnOff:state",
                         "turn $OnOff:state (the)? $Appliance:appliance",
                         "$Appliance:appliance (turn)? $OnOff:state"
                     ]
@@ -81,7 +81,7 @@
                 "trigger": {
                     "queryPatterns": [
                         "($Room:room)? squeezebox $Command:command",
-                        "$Command:command ($Room:room)? squeezebox"
+                        "$Command:command (the)? ($Room:room)? squeezebox"
                     ]
                 }
             },
@@ -135,7 +135,7 @@
                 ],
                 "trigger": {
                     "queryPatterns": [
-                        "($Room:room)? squeezebox search ($SearchType:type)? $SchemaOrg_Text:term"
+                        "($Room:room)? squeezebox search (for (the)?)? ($SearchType:type)? (matching)? $SchemaOrg_Text:term"
                     ]
                 }
             },
@@ -186,7 +186,7 @@
                 ],
                 "trigger": {
                     "queryPatterns": [
-                        "($Room:room)? squeezebox volume $SchemaOrg_Number:percent %"
+                        "(set)? (the)? ($Room:room)? squeezebox volume $SchemaOrg_Number:percent %"
                     ]
                 }
             },
