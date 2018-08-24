@@ -16,11 +16,7 @@ appliance_codes = {
   "UPSTAIRS BATHROOM MIRROR LIGHTS"     : 61,
   "UPSTAIRS BATHROOM FAN"               : 72,
   "TOILET LIGHTS"                       : 87,
-  "DOWNSTAIRS BATHROOM MIRROR LIGHTS"   : 145,
-  
-  "ALL LIGHTS"                          : 5,
-  "FRONT LIGHTS"                        : 6,
-  "BACK LIGHTS"                         : 7,
+  "DOWNSTAIRS BATHROOM MIRROR LIGHTS"   : 145
 }
 
 actions = {
@@ -28,7 +24,16 @@ actions = {
   "HEATING OFF"                         : lambda: _run_macro(1),
   "HEATING MAN ADVANCE"                 : lambda: _send_command(b'action flag set 76; __wait 500; action pe run 10; __wait 200'),
   "HOT WATER TOPUP"                     : lambda: _run_macro(2),
-  "HOT WATER OFF"                       : lambda: _run_macro(4)
+  "HOT WATER OFF"                       : lambda: _run_macro(4),
+  "ALL LIGHTS OFF"                      : lambda: _run_macro(5),
+  "FRONT LIGHTS TRIGGER"                : lambda: _run_macro(6),
+  "BACK LIGHTS TRIGGER"                 : lambda: _run_macro(7),
+  "DOWNSTAIRS BATHROOM LEFT RADIATOR"   : lambda: _run_macro(16),
+  "DOWNSTAIRS BATHROOM RIGHT RADIATOR"  : lambda: _run_macro(20),
+  "DOWNSTAIRS BATHROOM RADIATORS"       : lambda: _run_macro(16); _run_macro(20),
+  "UPSTAIRS BATHROOM LEFT RADIATOR"     : lambda: _run_macro(65),
+  "UPSTAIRS BATHROOM RIGHT RADIATOR"    : lambda: _run_macro(69),
+  "UPSTAIRS BATHROOM RADIATORS"         : lambda: _run_macro(65); _run_macro(69)
 }
 
 def on_off_command(details):

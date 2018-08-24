@@ -376,25 +376,6 @@
                         "bathroom mirror",
                         "mirror"
                     ]
-                },
-                {
-                    "key": "ALL LIGHTS",
-                    "synonyms": [
-                        "all",
-                        "all house"
-                    ]
-                },
-                {
-                    "key": "FRONT LIGHTS",
-                    "synonyms": [
-                        "front"
-                    ]
-                },
-                {
-                    "key": "BACK LIGHTS",
-                    "synonyms": [
-                        "back"
-                    ]
                 }
             ]
         },
@@ -544,6 +525,91 @@
                         "turn off the water heating",
                         "turn the hot water off",
                         "turn off the hot water"
+                    ]
+                },
+                {
+                    "key": "ALL LIGHTS OFF",
+                    "synonyms": [
+                        "all lights off",
+                        "all house lights off",
+                        "all house off",
+                        "all off",
+                        "turn all lights off",
+                        "all house lights turn off",
+                        "all house turn off",
+                        "turn all off",
+                        "all turn off"
+                    ]
+                },
+                {
+                    "key": "FRONT LIGHTS TRIGGER",
+                    "synonyms": [
+                        "front lights",
+                        "trigger front lights",
+                        "front lights on",
+                        "turn front lights on",
+                        "turn on front lights"
+                    ]
+                },
+                {
+                    "key": "BACK LIGHTS TRIGGER",
+                    "synonyms": [
+                        "back lights",
+                        "trigger back lights",
+                        "back lights on",
+                        "turn back lights on",
+                        "turn on back lights"
+                    ]
+                },
+                {
+                    "key": "DOWNSTAIRS BATHROOM LEFT RADIATOR",
+                    "synonyms": [
+                        "downstairs bathroom left radiator on",
+                        "bathroom left radiator on",
+                        "left radiator on",
+                        "bathroom left radiator turn on",
+                        "left radiator turn on"
+                    ]
+                },
+                {
+                    "key": "DOWNSTAIRS BATHROOM RIGHT RADIATOR",
+                    "synonyms": [
+                        "downstairs bathroom right radiator on",
+                        "bathroom right radiator on",
+                        "right radiator on",
+                        "bathroom right radiator turn on",
+                        "right radiator turn on"
+                    ]
+                },
+                {
+                    "key": "DOWNSTAIRS BATHROOM RADIATORS",
+                    "synonyms": [
+                        "downstairs bathroom radiators on",
+                        "bathroom radiators on",
+                        "radiators on",
+                        "bathroom radiators turn on",
+                        "radiators turn on"
+                    ]
+                },
+                {
+                    "key": "UPSTAIRS BATHROOM LEFT RADIATOR",
+                    "synonyms": [
+                        "upstairs bathroom left radiator on",
+                        "upstairs bathroom left radiator turn on"
+                    ]
+                },
+                {
+                    "key": "UPSTAIRS BATHROOM RIGHT RADIATOR",
+                    "synonyms": [
+                        "upstairs bathroom right radiator on",
+                        "upstairs bathroom right radiator turn on"
+                    ]
+                },
+                {
+                    "key": "UPSTAIRS BATHROOM RADIATORS",
+                    "synonyms": [
+                        "upstairs bathroom radiators on",
+                        "upstairs bathroom radiators turn on"
                     ]
                 }
             ]
