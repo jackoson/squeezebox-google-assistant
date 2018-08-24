@@ -29,7 +29,7 @@ from google.assistant.library.event import EventType
 from google.assistant.library.file_helpers import existing_file
 from google.assistant.library.device_helpers import register_device
 
-import appliance_controller as app_controller
+import homevision_controller as hv_controller
 import squeezebox_controller as squeeze_controller
 import time
 import sys
@@ -80,8 +80,8 @@ def process_event(event):
         for command, params in event.actions:
             print('Do command', command, 'with params', str(params))
             try:
-              if command == "com.example.commands.OnOffAppliance":
-                  app_controller.sendApplianceCommand(params)
+              if command == "com.example.commands.HomeVisionOnOff":
+                  hv_controller.on_off_command(params)
               elif command == "com.example.commands.SqueezeBoxCommand":
                   squeeze_controller.simple_command(params)
               elif command == "com.example.commands.SqueezeBoxSearch":

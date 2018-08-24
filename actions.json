@@ -5,7 +5,7 @@
         "category": "PRODUCTIVITY"
     },
     "actions": [
-        { "name": "com.example.actions.OnOffAppliance",
+        { "name": "com.example.actions.HomeVisionOnOff",
             "availability": { "deviceClasses": [ { "assistantSdkDevice": {} } ] },
             "intent": {
                 "name": "com.example.intents.OnOffAppliance",
@@ -57,7 +57,7 @@
                 "parameters": [
                     {
                         "name": "command",
-                        "type": "Command"
+                        "type": "SBCommand"
                     },
                     {
                         "name": "room",
@@ -66,8 +66,8 @@
                 ],
                 "trigger": {
                     "queryPatterns": [
-                        "($Room:room)? squeezebox $Command:command",
-                        "$Command:command (the)? ($Room:room)? squeezebox"
+                        "($Room:room)? squeezebox $SBCommand:command",
+                        "$SBCommand:command (the)? ($Room:room)? squeezebox"
                     ]
                 }
             },
@@ -343,16 +343,10 @@
                     "synonyms": [
                         "back"
                     ]
-                },
-                {
-                    "key": "HEATING",
-                    "synonyms": [
-                        "heating"
-                    ]
                 }
             ]
         },
-        { "name": "$Command",
+        { "name": "$SBCommand",
             "entities": [
                 {
                     "key": "PLAY",
