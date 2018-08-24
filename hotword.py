@@ -31,8 +31,9 @@ from google.assistant.library.device_helpers import register_device
 
 import homevision_controller as hv_controller
 import squeezebox_controller as squeeze_controller
-import time
+
 import sys
+import datetime
 
 try:
     FileNotFoundError
@@ -62,23 +63,21 @@ class Logger(object):
     def flush(self):
         # self.terminal.flush()
         self.log.flush()
-
+  
+def log(x):
+  now = datetime.datetime.now().strftime('%F_%X')
+  x['time'] = now
+  print(x)
+        
 def process_event(event):
-    """Pretty prints events.
-
-    Prints all events that occur with two spaces between each new
-    conversation and a single space between turns of a conversation.
-
+    """
     Args:
         event(event.Event): The current event to process.
     """
-    
-    if event.type == EventType.ON_CONVERSATION_TURN_STARTED:
-        print()
-
+   
     if event.type == EventType.ON_DEVICE_ACTION:
         for command, params in event.actions:
-            print('Do command', command, 'with params', str(params))
+            log({'type': 'device action', 'command': command, 'params': params})
             try:
               if command == "com.example.commands.HomeVisionOnOff":
                   hv_controller.on_off_command(params)
@@ -93,15 +92,16 @@ def process_event(event):
               elif command == "com.example.commands.SqueezeBoxRadio4":
                   squeeze_controller.play_radio4(params)
             except Exception as e:
-              print('There was an error while trying to complete your request')
-              print(str(e))
-    else:
-      print(event)
-
-    if (event.type == EventType.ON_CONVERSATION_TURN_FINISHED and
-            event.args and not event.args['with_follow_on_turn']):
-        print()
+              log({'type': 'exception', 'message': str(e)})
+              
+    elif event.type == EventType.ON_RECOGNIZING_SPEECH_FINISHED:
+      log({'type': 'speech', 'text': event.args['text']})
     
+    elif event.type == EventType.ON_CONVERSATION_TURN_STARTED:
+      log({'type': 'listening'})
+
+    elif event.type == EventType.ON_RENDER_RESPONSE:
+      log({'type': 'google response', 'text': event.args['text']})
 
 
 def main():
