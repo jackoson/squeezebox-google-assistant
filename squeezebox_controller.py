@@ -191,6 +191,8 @@ def sync_player(details):
   master = player_macs[details['other']]
     
   _make_request(master, ["sync",slave])
+  _make_request(slave, commands["POWER ON"])
+  _make_request(master, commands["POWER ON"])
  
   
 @_cache_player
