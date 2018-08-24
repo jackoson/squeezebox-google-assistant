@@ -50,6 +50,49 @@
                 }
             }
         },
+        { "name": "com.example.actions.HomeVisionStartStop",
+            "availability": { "deviceClasses": [ { "assistantSdkDevice": {} } ] },
+            "intent": {
+                "name": "com.example.intents.HomeVisionStartStop",
+                "parameters": [
+                    {
+                        "name": "action",
+                        "type": "StartStop"
+                    },
+                    {
+                        "name": "process",
+                        "type": "Process"
+                    }
+                ],
+                "trigger": {
+                    "queryPatterns": [
+                        "$StartStop:action (the)? $Process:process"
+                    ]
+                }
+            },
+            "fulfillment": {
+                "staticFulfillment": {
+                    "templatedResponse": {
+                        "items": [
+                            {
+                                "simpleResponse": {
+                                    "textToSpeech": "I will $action the $process"
+                                }
+                            },
+                            {
+                                "deviceExecution": {
+                                    "command": "com.example.commands.HomeVisionStartStop",
+                                    "params": {
+                                        "action": "$action",
+                                        "process": "$process"
+                                    }
+                                }
+                            }
+                        ]
+                    }
+                }
+            }
+        },
         { "name": "com.example.actions.HomeVisionAction",
             "availability": { "deviceClasses": [ { "assistantSdkDevice": {} } ] },
             "intent": {
@@ -278,6 +321,63 @@
                     "synonyms": [
                         "off",
                         "dark"
+                    ]
+                }
+            ]
+        },
+        { "name": "$StartStop",
+            "entities": [
+                {
+                    "key": "START",
+                    "synonyms": [
+                        "start",
+                        "begin"
+                    ]
+                },
+                {
+                    "key": "STOP",
+                    "synonyms": [
+                        "stop",
+                        "end"
+                    ]
+                }
+            ]
+        },
+        { "name": "$Process",
+            "entities": [
+                {
+                    "key": "VEG WATERING",
+                    "synonyms": [
+                        "vegetable watering",
+                        "watering the vegetables"
+                    ]
+                },
+                {
+                    "key": "FRUIT WATERING",
+                    "synonyms": [
+                        "fruit watering",
+                        "watering the fruit"
+                    ]
+                },
+                {
+                    "key": "PATIO WATERING",
+                    "synonyms": [
+                        "patio watering",
+                        "watering the patio"
+                    ]
+                },
+                {
+                    "key": "POND TOPUP",
+                    "synonyms": [
+                        "pond top up",
+                        "topping up the pond"
+                    ]
+                },
+                {
+                    "key": "ALL WATERING",
+                    "synonyms": [
+                        "all watering",
+                        "watering everything"
                     ]
                 }
             ]
