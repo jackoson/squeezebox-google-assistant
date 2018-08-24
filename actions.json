@@ -284,27 +284,20 @@
             "name": "$Appliance",
             "entities": [
                 {
-                    "key": "LANDING LIGHTS",
+                    "key": "DOWNSTAIRS BATHROOM MAIN LIGHTS",
                     "synonyms": [
-                        "landing lights",
-                        "landing"
-                    ]
-                },
-                {
-                    "key": "UPSTAIRS BATHROOM MAIN LIGHTS",
-                    "synonyms": [
-                        "upstairs bathroom main lights",
-                        "upstairs bathroom lights",
-                        "upstairs bathroom",
+                        "downstairs bathroom main lights",
+                        "downstairs bathroom lights",
+                        "downstairs bathroom",
                         "bathroom lights",
                         "bathroom"
                     ]
                 },
                 {
-                    "key": "HALL LIGHTS",
+                    "key": "LOUNGE LIGHTS",
                     "synonyms": [
-                        "hall lights",
-                        "hall"
+                        "lounge lights",
+                        "lounge"
                     ]
                 },
                 {
@@ -319,6 +312,87 @@
                     "key": "KITCHEN CUPBOARD LIGHTS",
                     "synonyms": [
                         "kitchen cupboard lights"
+                    ]
+                },
+                {
+                    "key": "HALL LIGHTS",
+                    "synonyms": [
+                        "hall lights",
+                        "hall"
+                    ]
+                },
+                {
+                    "key": "LANDING LIGHTS",
+                    "synonyms": [
+                        "landing lights",
+                        "landing"
+                    ]
+                },
+                {
+                    "key": "BEDROOM LAMP",
+                    "synonyms": [
+                        "mum and dad's bedroom lights",
+                        "bedroom lights",
+                        "mum and dad's bedroom",
+                        "bedroom"
+                    ]
+                },
+                {
+                    "key": "UTILITY ROOM LIGHTS",
+                    "synonyms": [
+                        "utility room lights",
+                        "utility room"
+                    ]
+                },
+                {
+                    "key": "UPSTAIRS BATHROOM MAIN LIGHTS",
+                    "synonyms": [
+                        "upstairs bathroom main lights",
+                        "upstairs bathroom lights",
+                        "upstairs bathroom"
+                    ]
+                },
+                {
+                    "key": "UPSTAIRS BATHROOM MIRROR LIGHTS",
+                    "synonyms": [
+                        "upstairs bathroom mirror lights"
+                    ]
+                },
+                {
+                    "key": "TOILET LIGHTS",
+                    "synonyms": [
+                        "toilet lights",
+                        "toilet"
+                    ]
+                },
+                {
+                    "key": "DOWNSTAIRS BATHROOM MIRROR LIGHTS",
+                    "synonyms": [
+                        "downstairs bathroom mirror lights",
+                        "bathroom mirror lights",
+                        "mirror lights",
+                        "mirror"
+                    ]
+                },
+                {
+                    "key": "ALL LIGHTS",
+                    "synonyms": [
+                        "all lights",
+                        "all"
+                    ]
+                },
+                {
+                    "key": "FRONT LIGHTS",
+                    "synonyms": [
+                        "front lights",
+                        "front"
+                    ]
+                },
+                {
+                    "key": "BACK LIGHTS",
+                    "synonyms": [
+                        "back lights",
+                        "back"
                     ]
                 }
             ]
