@@ -3,6 +3,7 @@ import socket
 
 appliance_codes = {
   "DOWNSTAIRS BATHROOM MAIN LIGHTS"     : 8,
+  "DOWNSTAIRS BATHROOM FAN"             : 23,
   "CUPBOARD LIGHTS"                     : 26,
   "LOUNGE LIGHTS"                       : 29,
   "KITCHEN MAIN LIGHTS"                 : 34,
@@ -13,6 +14,7 @@ appliance_codes = {
   "UTILITY ROOM LIGHTS"                 : 51,
   "UPSTAIRS BATHROOM MAIN LIGHTS"       : 58,
   "UPSTAIRS BATHROOM MIRROR LIGHTS"     : 61,
+  "UPSTAIRS BATHROOM FAN"               : 72,
   "TOILET LIGHTS"                       : 87,
   "DOWNSTAIRS BATHROOM MIRROR LIGHTS"   : 145,
   

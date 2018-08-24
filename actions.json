@@ -293,6 +293,14 @@
                     ]
                 },
                 {
+                    "key": "DOWNSTAIRS BATHROOM FAN",
+                    "synonyms": [
+                        "downstairs bathroom fan",
+                        "bathroom fan",
+                        "fan"
+                    ]
+                },
+                {
                     "key": "LOUNGE LIGHTS",
                     "synonyms": [
                         "lounge"
@@ -347,6 +355,12 @@
                     "key": "UPSTAIRS BATHROOM MIRROR LIGHTS",
                     "synonyms": [
                         "upstairs bathroom mirror"
+                    ]
+                },
+                {
+                    "key": "UPSTAIRS BATHROOM FAN",
+                    "synonyms": [
+                        "upstairs bathroom fan"
                     ]
                 },
                 {
