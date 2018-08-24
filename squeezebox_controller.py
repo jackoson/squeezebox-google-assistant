@@ -26,7 +26,10 @@ search_types = {
 }
 default_search_type = "SONG"
 
-def cache_player(f):
+class UserException(Exception):
+  pass
+
+def _cache_player(f):
   def cached_f(details):
     global cached_player
     if (not cached_player == None) and ("room" not in details or details["room"] == "$room"):
@@ -36,7 +39,7 @@ def cache_player(f):
     f(details)
   return cached_f
 
-@cache_player
+@_cache_player
 def simple_command(details):
   """Sends a simple squeezebox commands
   
@@ -57,7 +60,7 @@ def simple_command(details):
 
   _make_request(player_macs[details['room']], commands[details['command']])
 
-@cache_player
+@_cache_player
 def search_and_play(details):
   """Plays the specified music
   
@@ -78,7 +81,7 @@ def search_and_play(details):
   if details['room'] not in player_macs:
     raise Exception("player must be one of: " + str(player_macs.keys()))
   if details['term'] == "":
-    raise Exception("Search term cannot be empty")
+    raise UserException("Search term cannot be empty")
     
   if details['type'] == '$type':
     details['type'] = default_search_type
@@ -89,8 +92,7 @@ def search_and_play(details):
 
   type = search_types[details['type']]
   if type+'s_loop' not in result or len(result[type+'s_loop']) < 1:
-    print("No " + type + " matching: " + details["term"])
-    return
+    raise UserException("No " + type + " matching: " + details["term"])
 
   entity = result[type+'s_loop'][0]
   entity_id = entity[type+'_id']
@@ -98,7 +100,7 @@ def search_and_play(details):
   _make_request(player_macs[details['room']], ["playlistcontrol", "cmd:load", entity_id_type + str(entity_id)])
 
   
-@cache_player
+@_cache_player
 def set_volume(details):
   """Sets volume at specified level
   
@@ -128,7 +130,7 @@ def set_volume(details):
     
   _make_request(player_macs[details['room']], ["mixer","volume",str(percent)])
 
-@cache_player
+@_cache_player
 def play_radio4(details):
   """Plays BBC Radio 4
   
@@ -158,8 +160,8 @@ def _make_request(player, command):
   return json.loads(req.content.decode("ascii"))
 
 if __name__ == "__main__":
-  # searchAndPlay({"room": "UPSTAIRS BATHROOM", "term": "hall of the mountain"})
-  searchAndPlay({"room": "SAMS BEDROOM", "type": "ARTIST", "term": "queen"})
+  # search_and_play({"room": "UPSTAIRS BATHROOM", "term": "hall of the mountain"})
+  search_and_play({"room": "SAMS BEDROOM", "type": "ARTIST", "term": "queen"})
 
 
 _populate_player_macs()

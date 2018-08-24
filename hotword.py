@@ -51,17 +51,14 @@ WARNING_NOT_REGISTERED = """
 
 
 class Logger(object):
-    def __init__(self, filename="Default.log"):
-        # self.terminal = sys.stdout
+    def __init__(self, filename="assistant.log"):
         self.log = open(filename, "a")
 
     def write(self, message):
-        # self.terminal.write(message)
         self.log.write(message)
         self.log.flush()
 
     def flush(self):
-        # self.terminal.flush()
         self.log.flush()
   
 def log(x):
@@ -91,6 +88,8 @@ def process_event(event):
                   squeeze_controller.set_volume(params)
               elif command == "com.example.commands.SqueezeBoxRadio4":
                   squeeze_controller.play_radio4(params)
+            except squeeze_controller.UserException as e:
+              log({'type': 'squeezebox response', 'message': str(e)})
             except Exception as e:
               log({'type': 'exception', 'message': str(e)})
               
