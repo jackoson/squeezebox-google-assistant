@@ -1,8 +1,9 @@
 import requests
 import json
+from functools import wraps
 from feedback import UserException
 
-url = "http://192.168.1.126:9000/jsonrpc.js"
+end_point_url = "http://192.168.1.126:9000/jsonrpc.js"
 
 commands = {
   "PLAY": ["play"],
@@ -34,6 +35,7 @@ queries = {
 }
 
 def _cache_player(f):
+  @wraps(f)
   def cached_f(details):
     global cached_player
     if (not cached_player == None) and ("player" not in details or details["player"] == "$player"):
@@ -145,8 +147,8 @@ def play_radio4(details):
   """
   if "player" not in details:
     raise Exception("Player not specified")
-  url = "http://192.168.1.126:9000/plugins/Favorites/index.html?action=play&index=9&player="
-  requests.get(url+player_macs[details['player']])
+  action_url = "http://192.168.1.126:9000/plugins/Favorites/index.html?action=play&index=9&player="
+  requests.get(action_url+player_macs[details['player']])
 
 @_cache_player
 def simple_query(details):
@@ -185,7 +187,7 @@ def _get_player_info(player):
   
 def _make_request(player, command):
   payload = {'method': 'slim.request', 'params': [player, command]}
-  req = requests.post(url, json=payload)
+  req = requests.post(end_point_url, json=payload)
   return json.loads(req.content.decode("ascii"))
 
 _populate_player_macs()
