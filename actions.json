@@ -5,8 +5,7 @@
         "category": "PRODUCTIVITY"
     },
     "actions": [
-        {
-            "name": "com.example.actions.OnOffAppliance",
+        { "name": "com.example.actions.OnOffAppliance",
             "availability": { "deviceClasses": [ { "assistantSdkDevice": {} } ] },
             "intent": {
                 "name": "com.example.intents.OnOffAppliance",
@@ -51,8 +50,7 @@
                 }
             }
         },
-        {
-            "name": "com.example.actions.SqueezeBoxCommand",
+        { "name": "com.example.actions.SqueezeBoxCommand",
             "availability": { "deviceClasses": [ { "assistantSdkDevice": {} } ] },
             "intent": {
                 "name": "com.example.intents.SqueezeBoxCommand",
@@ -96,8 +94,7 @@
                 }
             }
         },
-        {
-            "name": "com.example.actions.SqueezeBoxSearch",
+        { "name": "com.example.actions.SqueezeBoxSearch",
             "availability": { "deviceClasses": [ { "assistantSdkDevice": {} } ] },
             "intent": {
                 "name": "com.example.intents.SqueezeBoxSearch",
@@ -145,8 +142,7 @@
                 }
             }
         },
-        {
-            "name": "com.example.actions.SqueezeBoxVolume",
+        { "name": "com.example.actions.SqueezeBoxVolume",
             "availability": { "deviceClasses": [ { "assistantSdkDevice": {} } ] },
             "intent": {
                 "name": "com.example.intents.SqueezeBoxVolume",
@@ -189,8 +185,7 @@
                 }
             }
         },
-        {
-            "name": "com.example.actions.SqueezeBoxRadio4",
+        { "name": "com.example.actions.SqueezeBoxRadio4",
             "availability": { "deviceClasses": [ { "assistantSdkDevice": {} } ] },
             "intent": {
                 "name": "com.example.intents.SqueezeBoxRadio4",
@@ -231,8 +226,7 @@
         }
     ],
     "types": [
-        {
-            "name": "$OnOff",
+        { "name": "$OnOff",
             "entities": [
                 {
                     "key": "ON",
@@ -250,8 +244,7 @@
                 }
             ]
         },
-        {
-            "name": "$Appliance",
+        { "name": "$Appliance",
             "entities": [
                 {
                     "key": "DOWNSTAIRS BATHROOM MAIN LIGHTS",
@@ -358,8 +351,7 @@
                 }
             ]
         },
-        {
-            "name": "$Command",
+        { "name": "$Command",
             "entities": [
                 {
                     "key": "PLAY",
@@ -440,8 +432,7 @@
                 }
             ]
         },
-        {
-            "name": "$Room",
+        { "name": "$Room",
             "entities": [
                 {
                     "key": "Sam's Bedroom",
@@ -522,8 +513,7 @@
                 }
             ]
         },
-        {
-            "name": "$SearchType",
+        { "name": "$SearchType",
             "entities": [
                 {
                     "key": "SONG",
