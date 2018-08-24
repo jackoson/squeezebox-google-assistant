@@ -141,14 +141,14 @@
                         "type": "SBCommand"
                     },
                     {
-                        "name": "room",
-                        "type": "Room"
+                        "name": "player",
+                        "type": "Player"
                     }
                 ],
                 "trigger": {
                     "queryPatterns": [
-                        "($Room:room)? squeezebox $SBCommand:command",
-                        "$SBCommand:command (the)? ($Room:room)? squeezebox"
+                        "($Player:player)? squeezebox $SBCommand:command",
+                        "$SBCommand:command (the)? ($Player:player)? squeezebox"
                     ]
                 }
             },
@@ -158,14 +158,14 @@
                         "items": [
                             {
                                 "simpleResponse": {
-                                    "textToSpeech": "$room squeezebox $command"
+                                    "textToSpeech": "$player squeezebox $command"
                                 }
                             },
                             {
                                 "deviceExecution": {
                                     "command": "com.example.commands.SqueezeBoxCommand",
                                     "params": {
-                                        "room": "$room",
+                                        "player": "$player",
                                         "command": "$command"
                                     }
                                 }
@@ -181,8 +181,8 @@
                 "name": "com.example.intents.SqueezeBoxSearch",
                 "parameters": [
                     {
-                        "name": "room",
-                        "type": "Room"
+                        "name": "player",
+                        "type": "Player"
                     },
                     {
                         "name": "term",
@@ -195,7 +195,7 @@
                 ],
                 "trigger": {
                     "queryPatterns": [
-                        "($Room:room)? squeezebox search (for)? (the)? ($SearchType:type)? (matching)? $SchemaOrg_Text:term"
+                        "($Player:player)? squeezebox search (for)? (the)? ($SearchType:type)? (matching)? $SchemaOrg_Text:term"
                     ]
                 }
             },
@@ -212,7 +212,7 @@
                                 "deviceExecution": {
                                     "command": "com.example.commands.SqueezeBoxSearch",
                                     "params": {
-                                        "room": "$room",
+                                        "player": "$player",
                                         "term": "$term",
                                         "type": "$type"
                                     }
@@ -229,8 +229,8 @@
                 "name": "com.example.intents.SqueezeBoxVolume",
                 "parameters": [
                     {
-                        "name": "room",
-                        "type": "Room"
+                        "name": "player",
+                        "type": "Player"
                     },
                     {
                         "name": "percent",
@@ -239,7 +239,7 @@
                 ],
                 "trigger": {
                     "queryPatterns": [
-                        "(set)? (the)? ($Room:room)? squeezebox volume (to)? $SchemaOrg_Number:percent %"
+                        "(set)? (the)? ($Player:player)? squeezebox volume (to)? $SchemaOrg_Number:percent %"
                     ]
                 }
             },
@@ -256,7 +256,7 @@
                                 "deviceExecution": {
                                     "command": "com.example.commands.SqueezeBoxVolume",
                                     "params": {
-                                        "room": "$room",
+                                        "player": "$player",
                                         "percent": "$percent"
                                     }
                                 }
@@ -272,14 +272,14 @@
                 "name": "com.example.intents.SqueezeBoxRadio4",
                 "parameters": [
                     {
-                        "name": "room",
-                        "type": "Room"
+                        "name": "player",
+                        "type": "Player"
                     }
                 ],
                 "trigger": {
                     "queryPatterns": [
-                        "(play)? (BBC)? (radio)? 4 on (the)? ($Room:room)? squeezebox",
-                        "($Room:room)? squeezebox (play)? (BBC)? (radio)? 4"
+                        "(play)? (BBC)? (radio)? 4 on (the)? ($Player:player)? squeezebox",
+                        "($Player:player)? squeezebox (play)? (BBC)? (radio)? 4"
                     ]
                 }
             },
@@ -289,14 +289,14 @@
                         "items": [
                             {
                                 "simpleResponse": {
-                                    "textToSpeech": "playing BBC radio 4 on $room squeezebox"
+                                    "textToSpeech": "playing BBC radio 4 on $player squeezebox"
                                 }
                             },
                             {
                                 "deviceExecution": {
                                     "command": "com.example.commands.SqueezeBoxRadio4",
                                     "params": {
-                                        "room": "$room"
+                                        "player": "$player"
                                     }
                                 }
                             }
@@ -721,7 +721,7 @@
                 }
             ]
         },
-        { "name": "$Room",
+        { "name": "$Player",
             "entities": [
                 {
                     "key": "Sam's Bedroom",
