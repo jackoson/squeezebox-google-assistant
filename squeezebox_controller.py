@@ -43,7 +43,7 @@ def simple_command(details):
   Sends one of the fixed commands to the specified squeezebox
 
   Args:
-    details: dict["room", "command"]
+    details: {"room": string, "command": string}
   """
   if "room" not in details:
     raise Exception("Room not specified")
@@ -64,7 +64,9 @@ def search_and_play(details):
   Searches for the specified music and loads it on the specified squeezebox
 
   Args:
-    details: dict["room", "term" (search term), "type" (search mode)]
+    details: {"room": string, "term": string, "type": string}
+      - term is the string to search for
+      - type is the search mode; ie. track/album...
   """
   if "room" not in details:
     raise Exception("Room not specified")
@@ -103,7 +105,7 @@ def set_volume(details):
   Sets the volume of the specified squeezebox at the specified level
 
   Args:
-    details: dict["room", "percent"]
+    details: {"room": string, "percent": string}
   """
   if "room" not in details:
     raise Exception("Room not specified")
@@ -133,7 +135,7 @@ def play_radio4(details):
   Plays BBC radio 4 via the favourite
 
   Args:
-    details: dict["room"]
+    details: {"room": string}
   """
   if "room" not in details:
     raise Exception("Room not specified")
