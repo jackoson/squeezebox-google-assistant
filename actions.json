@@ -611,6 +611,13 @@
                         "upstairs bathroom radiators on",
                         "upstairs bathroom radiators turn on"
                     ]
+                },
+                {
+                    "key": "DOOR BELL",
+                    "synonyms": [
+                        "ring door bell",
+                        "ring the door bell"
+                    ]
                 }
             ]
         },
