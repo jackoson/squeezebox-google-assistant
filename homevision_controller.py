@@ -22,14 +22,21 @@ appliance_codes = {
 }
 
 actions = {
-  "HEATING HOUR"                        : lambda: run_macro(0),
-  "HEATING OFF"                         : lambda: run_macro(1),
-  "HEATING MAN ADVANCE"                 : lambda: send_command(b'action flag set 76; __wait 500; action pe run 10; __wait 200'),
-  "HOT WATER TOPUP"                     : lambda: run_macro(2),
-  "HOT WATER OFF"                       : lambda: run_macro(4)
+  "HEATING HOUR"                        : lambda: _run_macro(0),
+  "HEATING OFF"                         : lambda: _run_macro(1),
+  "HEATING MAN ADVANCE"                 : lambda: _send_command(b'action flag set 76; __wait 500; action pe run 10; __wait 200'),
+  "HOT WATER TOPUP"                     : lambda: _run_macro(2),
+  "HOT WATER OFF"                       : lambda: _run_macro(4)
 }
 
-def on_off_command(details): 
+def on_off_command(details):
+  """Send an on or off command to an appliance
+  
+  Sends the specified command to the homevision through netio interface to control the specified appliance.
+  
+  Args:
+    details: {"appliance": string, "state": string} 
+  """
   if "appliance" not in details:
     raise Exception("appliance not specified")
   elif "state" not in details:
@@ -41,17 +48,24 @@ def on_off_command(details):
   appliance_code = appliance_codes[details["appliance"]]
   
   if details["appliance"] in ["ALL LIGHTS", "FRONT LIGHTS", "BACK LIGHTS"]:
-    run_macro(appliance_code)
+    _run_macro(appliance_code)
   else:
   
     if details['state'] == "ON":
-      switch_on(appliance_code)
+      _switch_on(appliance_code)
     elif details["state"] == "OFF":
-      switch_off(appliance_code)
+      _switch_off(appliance_code)
     else:
       raise Exception("state not supported. Must be either \"ON\" or \"OFF\".")
 
-def action_command(details): 
+def action_command(details):
+  """Send an action command
+  
+  Sends the specified command to the homevision through netio interface.
+  
+  Args:
+    details: {"command": string} 
+  """
   if "command" not in details:
     raise Exception("Command not specified")
 
@@ -61,19 +75,19 @@ def action_command(details):
   actions[details["command"]]()
   
 
-def switch_on(code):
-  send_command(b"action flag set 56; flag clear 57; flag set 58; \
+def _switch_on(code):
+  _send_command(b"action flag set 56; flag clear 57; flag set 58; \
     macro run " + bytes(str(code), encoding="ascii") + b"; __wait 100")
  
-def switch_off(code):
-  send_command(b"action flag clear 56; flag set 57; flag set 58; \
+def _switch_off(code):
+  _send_command(b"action flag clear 56; flag set 57; flag set 58; \
   macro run " + bytes(str(code), encoding="ascii") + b"; __wait 100")
   
-def run_macro(code):
-  send_command(b'action macro run ' + bytes(str(code), encoding="ascii") + '; __wait 100')
+def _run_macro(code):
+  _send_command(b'action macro run ' + bytes(str(code), encoding="ascii") + '; __wait 100')
 
  
-def send_command(command):
+def _send_command(command):
   s = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
   s.connect(("192.168.1.138", 11090))
   s.send(b"auth b2l0ZW46MnA4NzFrNGVxag\n")
@@ -85,8 +99,8 @@ if __name__ == "__main__":
     command = raw_input("command:")
     print(command)
     if command == "on":
-      sendApplianceCommand({"state": "ON", "appliance": "LANDING LIGHTS"})
+      on_off_command({"state": "ON", "appliance": "LANDING LIGHTS"})
     elif command == "off":
-      sendApplianceCommand({"state": "OFF", "appliance": "LANDING LIGHTS"})
+      on_off_command({"state": "OFF", "appliance": "LANDING LIGHTS"})
     else:
       print("not supported")
