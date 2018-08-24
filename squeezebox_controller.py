@@ -36,10 +36,10 @@ queries = {
 def _cache_player(f):
   def cached_f(details):
     global cached_player
-    if (not cached_player == None) and ("room" not in details or details["room"] == "$room"):
-      details["room"] = cached_player
+    if (not cached_player == None) and ("player" not in details or details["player"] == "$player"):
+      details["player"] = cached_player
     else:
-      cached_player = details['room']
+      cached_player = details['player']
     return f(details)
   return cached_f
 
@@ -50,19 +50,19 @@ def simple_command(details):
   Sends one of the fixed commands to the specified squeezebox
 
   Args:
-    details: {"room": string, "command": string}
+    details: {"player": string, "command": string}
   """
-  if "room" not in details:
-    raise Exception("Room not specified")
+  if "player" not in details:
+    raise Exception("Player not specified")
   elif "command" not in details:
     raise Exception("Command not specified")
 
   if details['command'] not in commands:
     raise Exception("command must be one of: " + str(commands.keys()))
-  if details['room'] not in player_macs:
+  if details['player'] not in player_macs:
     raise Exception("player must be one of: " + str(player_macs.keys()))
 
-  _make_request(player_macs[details['room']], commands[details['command']])
+  _make_request(player_macs[details['player']], commands[details['command']])
 
 @_cache_player
 def search_and_play(details):
@@ -71,18 +71,18 @@ def search_and_play(details):
   Searches for the specified music and loads it on the specified squeezebox
 
   Args:
-    details: {"room": string, "term": string, "type": string}
+    details: {"player": string, "term": string, "type": string}
       - term is the string to search for
       - type is the search mode; ie. track/album...
   """
-  if "room" not in details:
-    raise Exception("Room not specified")
+  if "player" not in details:
+    raise Exception("Player not specified")
   elif "term" not in details:
     raise Exception("Search term not specified")
   elif "type" not in details:
     raise Exception("Search type not specified")
 
-  if details['room'] not in player_macs:
+  if details['player'] not in player_macs:
     raise Exception("player must be one of: " + str(player_macs.keys()))
   if details['term'] == "":
     raise UserException("Search term cannot be empty")
@@ -92,7 +92,7 @@ def search_and_play(details):
   elif details['type'] not in search_types:
     raise Exception("Search type must be one of: " + str(search_types.keys()))
     
-  result = _make_request(player_macs[details['room']], ["search", 0, 1, "term:" + details["term"]])["result"]
+  result = _make_request(player_macs[details['player']], ["search", 0, 1, "term:" + details["term"]])["result"]
 
   type = search_types[details['type']]
   if type+'s_loop' not in result or len(result[type+'s_loop']) < 1:
@@ -101,7 +101,7 @@ def search_and_play(details):
   entity = result[type+'s_loop'][0]
   entity_id = entity[type+'_id']
   entity_id_type = 'artist_id:' if details['type'] == "ARTIST" else type+"_id:"
-  _make_request(player_macs[details['room']], ["playlistcontrol", "cmd:load", entity_id_type + str(entity_id)])
+  _make_request(player_macs[details['player']], ["playlistcontrol", "cmd:load", entity_id_type + str(entity_id)])
 
   
 @_cache_player
@@ -111,14 +111,14 @@ def set_volume(details):
   Sets the volume of the specified squeezebox at the specified level
 
   Args:
-    details: {"room": string, "percent": string}
+    details: {"player": string, "percent": string}
   """
-  if "room" not in details:
-    raise Exception("Room not specified")
+  if "player" not in details:
+    raise Exception("Player not specified")
   elif "percent" not in details:
     raise Exception("Percentage not specified")
   
-  if details['room'] not in player_macs:
+  if details['player'] not in player_macs:
     raise Exception("player must be one of: " + str(player_macs.keys()))
   
   if type(details['percent']) == int:
@@ -132,7 +132,7 @@ def set_volume(details):
   if percent < 0 or percent > 100:
     raise Exception("Percentage must be a integer")
     
-  _make_request(player_macs[details['room']], ["mixer","volume",str(percent)])
+  _make_request(player_macs[details['player']], ["mixer","volume",str(percent)])
 
 @_cache_player
 def play_radio4(details):
@@ -141,12 +141,12 @@ def play_radio4(details):
   Plays BBC radio 4 via the favourite
 
   Args:
-    details: {"room": string}
+    details: {"player": string}
   """
-  if "room" not in details:
-    raise Exception("Room not specified")
+  if "player" not in details:
+    raise Exception("Player not specified")
   url = "http://192.168.1.126:9000/plugins/Favorites/index.html?action=play&index=9&player="
-  requests.get(url+player_macs[details['room']])
+  requests.get(url+player_macs[details['player']])
 
 @_cache_player
 def simple_query(details):
@@ -155,19 +155,19 @@ def simple_query(details):
   Performs one of the fixed queries on the specified squeezebox
 
   Args:
-    details: {"room": string, "query": string}
+    details: {"player": string, "query": string}
   """
-  if "room" not in details:
-    raise Exception("Room not specified")
+  if "player" not in details:
+    raise Exception("Player not specified")
   elif "query" not in details:
     raise Exception("Query not specified")
 
   if details['query'] not in queries:
     raise Exception("Query must be one of: " + str(queries.keys()))
-  if details['room'] not in player_macs:
+  if details['player'] not in player_macs:
     raise Exception("player must be one of: " + str(player_macs.keys()))
 
-  player_info = _get_player_info(player_macs[details['room']])
+  player_info = _get_player_info(player_macs[details['player']])
   
   return queries[details['query']](player_info)
   
@@ -191,9 +191,9 @@ def _make_request(player, command):
 _populate_player_macs()
 
 if __name__ == "__main__":
-  # search_and_play({"room": "UPSTAIRS BATHROOM", "term": "hall of the mountain"})
-  # search_and_play({"room": "SAMS BEDROOM", "type": "ARTIST", "term": "queen"})
-  print(simple_query({"room": "Sam's Bedroom", "query": "NOW PLAYING"}))
+  # search_and_play({"player": "UPSTAIRS BATHROOM", "term": "hall of the mountain"})
+  # search_and_play({"player": "SAMS BEDROOM", "type": "ARTIST", "term": "queen"})
+  print(simple_query({"player": "Sam's Bedroom", "query": "NOW PLAYING"}))
   
 
 
