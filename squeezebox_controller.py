@@ -27,6 +27,12 @@ search_types = {
 }
 default_search_type = "SONG"
 
+queries = {
+  "VOLUME": lambda info: "The volume is at %d percent"%(info['mixer volume']),
+  "NOW PLAYING": lambda info: info['playlist_loop'][0]['title'] + ' by ' + info['playlist_loop'][0]['artist'] \
+                      if 'playlist_loop' in info and len(info['playlist_loop']) > 0 else "Nothing is playing"
+}
+
 def _cache_player(f):
   def cached_f(details):
     global cached_player
@@ -34,7 +40,7 @@ def _cache_player(f):
       details["room"] = cached_player
     else:
       cached_player = details['room']
-    f(details)
+    return f(details)
   return cached_f
 
 @_cache_player
@@ -142,6 +148,29 @@ def play_radio4(details):
   url = "http://192.168.1.126:9000/plugins/Favorites/index.html?action=play&index=9&player="
   requests.get(url+player_macs[details['room']])
 
+@_cache_player
+def simple_query(details):
+  """Performs a simple query on a squeezebox 
+  
+  Performs one of the fixed queries on the specified squeezebox
+
+  Args:
+    details: {"room": string, "query": string}
+  """
+  if "room" not in details:
+    raise Exception("Room not specified")
+  elif "query" not in details:
+    raise Exception("Query not specified")
+
+  if details['query'] not in queries:
+    raise Exception("Query must be one of: " + str(queries.keys()))
+  if details['room'] not in player_macs:
+    raise Exception("player must be one of: " + str(player_macs.keys()))
+
+  player_info = _get_player_info(player_macs[details['room']])
+  
+  return queries[details['query']](player_info)
+  
 def _populate_player_macs():
   global player_macs
   player_macs = {}
@@ -151,15 +180,20 @@ def _populate_player_macs():
     name = player['name'].split("(", 1)[0][:-1]
     player_macs[name] = player['playerid']
 
+def _get_player_info(player):
+  return _make_request(player, ["status","-"])["result"]
   
 def _make_request(player, command):
   payload = {'method': 'slim.request', 'params': [player, command]}
   req = requests.post(url, json=payload)
   return json.loads(req.content.decode("ascii"))
 
+_populate_player_macs()
+
 if __name__ == "__main__":
   # search_and_play({"room": "UPSTAIRS BATHROOM", "term": "hall of the mountain"})
-  search_and_play({"room": "SAMS BEDROOM", "type": "ARTIST", "term": "queen"})
+  # search_and_play({"room": "SAMS BEDROOM", "type": "ARTIST", "term": "queen"})
+  print(simple_query({"room": "Sam's Bedroom", "query": "NOW PLAYING"}))
+  
 
 
-_populate_player_macs()
