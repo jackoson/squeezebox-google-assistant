@@ -88,6 +88,8 @@ def process_event(event):
                   squeeze_controller.search_and_play(params)
               elif command == "com.example.commands.SqueezeBoxVolume":
                   squeeze_controller.set_volume(params)
+              elif command == "com.example.commands.SqueezeBoxRadio4":
+                  squeeze_controller.play_radio4(params)
             except Exception as e:
               print('There was an error while trying to complete your request')
               print(str(e))

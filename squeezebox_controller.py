@@ -126,6 +126,19 @@ def set_volume(details):
     
   _make_request(player_macs[details['room']], ["mixer","volume",str(percent)])
 
+@cache_player
+def play_radio4(details):
+  """Plays BBC Radio 4
+  
+  Plays BBC radio 4 via the favourite
+
+  Args:
+    details: dict["room"]
+  """
+  if "room" not in details:
+    raise Exception("Room not specified")
+  url = "http://192.168.1.126:9000/plugins/Favorites/index.html?action=play&index=9&player="
+  requests.get(url+player_macs[details['room']])
 
 def _populate_player_macs():
   global player_macs

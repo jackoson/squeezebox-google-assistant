@@ -212,6 +212,52 @@
                     }
                 }
             }
+        },
+        {
+            "name": "com.example.actions.SqueezeBoxRadio4",
+            "availability": {
+                "deviceClasses": [
+                    {
+                        "assistantSdkDevice": {}
+                    }
+                ]
+            },
+            "intent": {
+                "name": "com.example.intents.SqueezeBoxRadio4",
+                "parameters": [
+                    {
+                        "name": "room",
+                        "type": "Room"
+                    }
+                ],
+                "trigger": {
+                    "queryPatterns": [
+                        "(play)? (BBC)? (radio)? 4 on (the)? ($Room:room)? squeezebox",
+                        "($Room:room)? squeezebox (play)? (BBC)? (radio)? 4"
+                    ]
+                }
+            },
+            "fulfillment": {
+                "staticFulfillment": {
+                    "templatedResponse": {
+                        "items": [
+                            {
+                                "simpleResponse": {
+                                    "textToSpeech": "playing BBC radio 4 on $room squeezebox"
+                                }
+                            },
+                            {
+                                "deviceExecution": {
+                                    "command": "com.example.commands.SqueezeBoxRadio4",
+                                    "params": {
+                                        "room": "$room"
+                                    }
+                                }
+                            }
+                        ]
+                    }
+                }
+            }
         }
     ],
     "types": [
