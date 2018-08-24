@@ -368,7 +368,7 @@
                 ],
                 "trigger": {
                     "queryPatterns": [
-                        "sync ($Player:player)? squeezebox to $Player:other"
+                        "synchronize ($Player:player)? squeezebox to $Player:other"
                     ]
                 }
             },
