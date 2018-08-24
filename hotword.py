@@ -93,6 +93,8 @@ def process_event(event):
                   squeeze_controller.search_and_play(params)
               elif command == "com.example.commands.SqueezeBoxVolume":
                   squeeze_controller.set_volume(params)
+              elif command == "com.example.commands.SqueezeBoxSendMusic":
+                  squeeze_controller.send_music(params)
               elif command == "com.example.commands.SqueezeBoxRadio4":
                   squeeze_controller.play_radio4(params)
             except UserException as e:

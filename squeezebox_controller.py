@@ -137,6 +137,39 @@ def set_volume(details):
   _make_request(player_macs[details['player']], ["mixer","volume",str(percent)])
 
 @_cache_player
+def send_music(details):
+  """Sends music from one squeezebox to another
+  
+  Sends whatever is playing on the source to the destination squeezebox
+
+  Args:
+    details: {"player": string, "other": string, "direction": string}
+  """
+  if "player" not in details:
+    raise Exception("Player not specified")
+  if "other" not in details:
+    raise Exception("Other player not specified")
+  elif "direction" not in details:
+    raise Exception("Direction not specified")
+  
+  if details['player'] not in player_macs:
+    raise Exception("player must be one of: " + str(player_macs.keys()))
+  if details['other'] not in player_macs:
+    raise Exception("other player must be one of: " + str(player_macs.keys()))
+  
+  if details['direction'] == 'TO':
+    source = player_macs[details['player']]
+    dest = player_macs[details['other']]
+  elif details['direction'] == 'FROM':
+    source = player_macs[details['other']]
+    dest = player_macs[details['player']]
+  else:
+    raise Exception('direction must be either "from" or "to".')
+    
+  _make_request(player_macs[details['player']], "switchplayer","from:" + source,"to:" + dest])
+  
+  
+@_cache_player
 def play_radio4(details):
   """Plays BBC Radio 4
   

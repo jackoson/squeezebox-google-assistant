@@ -304,6 +304,54 @@
                 }
             }
         },
+        { "name": "com.example.actions.SqueezeBoxSendMusic",
+            "availability": { "deviceClasses": [ { "assistantSdkDevice": {} } ] },
+            "intent": {
+                "name": "com.example.intents.SqueezeBoxSendMusic",
+                "parameters": [
+                    {
+                        "name": "player",
+                        "type": "Player"
+                    },
+                    {
+                        "name": "other",
+                        "type": "Player"
+                    },
+                    {
+                        "name": "direction",
+                        "type": "Direction"
+                    }
+                ],
+                "trigger": {
+                    "queryPatterns": [
+                        "switch ($Player:player)? squeezebox $Direction:direction $Player:other"
+                    ]
+                }
+            },
+            "fulfillment": {
+                "staticFulfillment": {
+                    "templatedResponse": {
+                        "items": [
+                            {
+                                "simpleResponse": {
+                                    "textToSpeech": "switching $direction $other"
+                                }
+                            },
+                            {
+                                "deviceExecution": {
+                                    "command": "com.example.commands.SqueezeBoxSendMusic",
+                                    "params": {
+                                        "player": "$player",
+                                        "other": "$other",
+                                        "direction": "$direction"
+                                    }
+                                }
+                            }
+                        ]
+                    }
+                }
+            }
+        },
         { "name": "com.example.actions.SqueezeBoxRadio4",
             "availability": { "deviceClasses": [ { "assistantSdkDevice": {} } ] },
             "intent": {
@@ -876,6 +924,22 @@
                     "key": "ALBUM",
                     "synonyms": [
                         "album"
+                    ]
+                }
+            ]
+        },
+        { "name": "$Direction",
+            "entities": [
+                {
+                    "key": "FROM",
+                    "synonyms": [
+                        "from"
+                    ]
+                },
+                {
+                    "key": "TO",
+                    "synonyms": [
+                        "to"
                     ]
                 }
             ]
