@@ -82,6 +82,8 @@ def process_event(event):
             try:
               if command == "com.example.commands.HomeVisionOnOff":
                   hv_controller.on_off_command(params)
+              elif command == "com.example.commands.HomeVisionAction":
+                  hv_controller.action_command(params)
               elif command == "com.example.commands.SqueezeBoxCommand":
                   squeeze_controller.simple_command(params)
               elif command == "com.example.commands.SqueezeBoxSearch":

@@ -16,10 +16,17 @@ appliance_codes = {
   "TOILET LIGHTS"                       : 87,
   "DOWNSTAIRS BATHROOM MIRROR LIGHTS"   : 145,
   
-  "HEATING"                             : 0,
   "ALL LIGHTS"                          : 5,
   "FRONT LIGHTS"                        : 6,
   "BACK LIGHTS"                         : 7,
+}
+
+actions = {
+  "HEATING HOUR"                        : lambda: run_macro(0),
+  "HEATING OFF"                         : lambda: run_macro(1),
+  "HEATING MAN ADVANCE"                 : lambda: send_command(b'action flag set 76; __wait 500; action pe run 10; __wait 200'),
+  "HOT WATER TOPUP"                     : lambda: run_macro(2),
+  "HOT WATER OFF"                       : lambda: run_macro(4),,
 }
 
 def on_off_command(details): 
@@ -44,6 +51,16 @@ def on_off_command(details):
     else:
       raise Exception("state not supported. Must be either \"ON\" or \"OFF\".")
 
+def action_command(details): 
+  if "command" not in details:
+    raise Exception("Command not specified")
+
+  if details["command"] not in actions.keys():
+    raise Exception("Command not supported. Must be one of: " + ",".join(actions.keys()))
+
+  actions[details["command"]]()
+  
+
 def switch_on(code):
   send_command(b"action flag set 56; flag clear 57; flag set 58; \
     macro run " + bytes(str(code), encoding="ascii") + b"; __wait 100")
@@ -55,6 +72,7 @@ def switch_off(code):
 def run_macro(code):
   send_command(b'action macro run ' + bytes(str(code), encoding="ascii") + '; __wait 100')
 
+ 
 def send_command(command):
   s = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
   s.connect(("192.168.1.138", 11090))
