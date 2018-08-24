@@ -473,7 +473,47 @@
                         "heating 1 hour",
                         "turn on heating",
                         "turn on heating for 1 hour",
-                        "turn on heating for an hour"
+                        "turn on heating for an hour",
+                        "turn heating on",
+                        "turn heating on for 1 hour",
+                        "turn heating on for an hour"
+                    ]
+                },
+                {
+                    "key": "HEATING OFF",
+                    "synonyms": [
+                        "heating off",
+                        "turn off heating",
+                        "turn heating off"
+                    ]
+                },
+                {
+                    "key": "HEATING MAN ADVANCE",
+                    "synonyms": [
+                        "manual advance",
+                        "manual advance heating",
+                        "heating manual advance",
+                    ]
+                },
+                {
+                    "key": "HOT WATER TOPUP",
+                    "synonyms": [
+                        "water topup",
+                        "topup water",
+                        "hot water topup",
+                        "topup hot water",
+                        "turn on hot water"
+                    ]
+                },
+                {
+                    "key": "HOT WATER OFF",
+                    "synonyms": [
+                        "water heating off",
+                        "turn water heating off",
+                        "turn off water heating",
+                        "hot water off",
+                        "turn hot water off",
+                        "turn off hot water"
                     ]
                 }
             ]
