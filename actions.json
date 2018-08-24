@@ -50,6 +50,44 @@
                 }
             }
         },
+        { "name": "com.example.actions.HomeVisionAction",
+            "availability": { "deviceClasses": [ { "assistantSdkDevice": {} } ] },
+            "intent": {
+                "name": "com.example.intents.HomeVisionAction",
+                "parameters": [
+                    {
+                        "name": "command",
+                        "type": "HVCommand"
+                    }
+                ],
+                "trigger": {
+                    "queryPatterns": [
+                        "$HVCommand:command"
+                    ]
+                }
+            },
+            "fulfillment": {
+                "staticFulfillment": {
+                    "templatedResponse": {
+                        "items": [
+                            {
+                                "simpleResponse": {
+                                    "textToSpeech": "running $command"
+                                }
+                            },
+                            {
+                                "deviceExecution": {
+                                    "command": "com.example.commands.HomeVisionAction",
+                                    "params": {
+                                        "command": "$command"
+                                    }
+                                }
+                            }
+                        ]
+                    }
+                }
+            }
+        },
         { "name": "com.example.actions.SqueezeBoxCommand",
             "availability": { "deviceClasses": [ { "assistantSdkDevice": {} } ] },
             "intent": {
@@ -423,6 +461,19 @@
                         "previous",
                         "go back",
                         "back"
+                    ]
+                }
+            ]
+        },
+        { "name": "$HVCommand",
+            "entities": [
+                {
+                    "key": "HEATING HOUR",
+                    "synonyms": [
+                        "heating 1 hour",
+                        "turn on heating",
+                        "turn on heating for 1 hour",
+                        "turn on heating for an hour"
                     ]
                 }
             ]
