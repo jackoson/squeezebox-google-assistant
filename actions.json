@@ -175,6 +175,44 @@
                 }
             }
         },
+        { "name": "com.example.actions.SqueezeBoxQuery",
+            "availability": { "deviceClasses": [ { "assistantSdkDevice": {} } ] },
+            "intent": {
+                "name": "com.example.intents.SqueezeBoxQuery",
+                "parameters": [
+                    {
+                        "name": "query",
+                        "type": "SBQuery"
+                    },
+                    {
+                        "name": "player",
+                        "type": "Player"
+                    }
+                ],
+                "trigger": {
+                    "queryPatterns": [
+                        "what is (the)? ($Player:player)? squeezebox $SBQuery:query"
+                    ]
+                }
+            },
+            "fulfillment": {
+                "staticFulfillment": {
+                    "templatedResponse": {
+                        "items": [
+                            {
+                                "deviceExecution": {
+                                    "command": "com.example.commands.SqueezeBoxQuery",
+                                    "params": {
+                                        "player": "$player",
+                                        "query": "$query"
+                                    }
+                                }
+                            }
+                        ]
+                    }
+                }
+            }
+        },
         { "name": "com.example.actions.SqueezeBoxSearch",
             "availability": { "deviceClasses": [ { "assistantSdkDevice": {} } ] },
             "intent": {
@@ -556,6 +594,22 @@
                         "previous",
                         "go back",
                         "back"
+                    ]
+                }
+            ]
+        },
+        { "name": "$SBQuery",
+            "entities": [
+                {
+                    "key": "VOLUME",
+                    "synonyms": [
+                        "volume"
+                    ]
+                },
+                {
+                    "key": "NOW PLAYING",
+                    "synonyms": [
+                        "playing"
                     ]
                 }
             ]
