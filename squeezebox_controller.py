@@ -166,7 +166,7 @@ def send_music(details):
   else:
     raise Exception('direction must be either "from" or "to".')
     
-  _make_request(player_macs[details['player']], "switchplayer","from:" + source,"to:" + dest])
+  _make_request(player_macs[details['player']], ["switchplayer","from:" + source,"to:" + dest])
   
   
 @_cache_player
