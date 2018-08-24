@@ -26,7 +26,7 @@ actions = {
   "HEATING OFF"                         : lambda: run_macro(1),
   "HEATING MAN ADVANCE"                 : lambda: send_command(b'action flag set 76; __wait 500; action pe run 10; __wait 200'),
   "HOT WATER TOPUP"                     : lambda: run_macro(2),
-  "HOT WATER OFF"                       : lambda: run_macro(4),,
+  "HOT WATER OFF"                       : lambda: run_macro(4)
 }
 
 def on_off_command(details): 
