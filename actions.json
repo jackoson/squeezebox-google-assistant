@@ -158,7 +158,7 @@
                 ],
                 "trigger": {
                     "queryPatterns": [
-                        "(set)? (the)? ($Room:room)? squeezebox volume (to)? $SchemaOrg_Number:percent (%)?"
+                        "(set)? (the)? ($Room:room)? squeezebox volume (to)? $SchemaOrg_Number:percent %"
                     ]
                 }
             },
