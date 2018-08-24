@@ -31,6 +31,8 @@ from google.assistant.library.device_helpers import register_device
 
 import homevision_controller as hv_controller
 import squeezebox_controller as squeeze_controller
+from feedback import UserException
+
 
 import sys
 import datetime
@@ -80,6 +82,8 @@ def process_event(event):
                   hv_controller.on_off_command(params)
               elif command == "com.example.commands.HomeVisionAction":
                   hv_controller.action_command(params)
+              elif command == "com.example.commands.HomeVisionStartStop":
+                  hv_controller.start_stop_command(params)
               elif command == "com.example.commands.SqueezeBoxCommand":
                   squeeze_controller.simple_command(params)
               elif command == "com.example.commands.SqueezeBoxSearch":
@@ -88,7 +92,7 @@ def process_event(event):
                   squeeze_controller.set_volume(params)
               elif command == "com.example.commands.SqueezeBoxRadio4":
                   squeeze_controller.play_radio4(params)
-            except squeeze_controller.UserException as e:
+            except UserException as e:
               log({'type': 'squeezebox response', 'message': str(e)})
             except Exception as e:
               log({'type': 'exception', 'message': str(e)})

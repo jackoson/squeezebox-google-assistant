@@ -1,5 +1,6 @@
 
 import socket
+from feedback import UserException
 
 appliance_codes = {
   "DOWNSTAIRS BATHROOM MAIN LIGHTS"     : 8,
@@ -35,6 +36,18 @@ actions = {
   "UPSTAIRS BATHROOM RIGHT RADIATOR"    : lambda: _run_macro(69),
   "UPSTAIRS BATHROOM RADIATORS"         : lambda: (_run_macro(65), _run_macro(69)),
   "DOOR BELL"                           : lambda: _run_macro(117)
+}
+
+def user_exception(s): raise UserException(s)
+
+process_actions = {
+  "VEG WATERING": {"START": lambda: _run_macro(110), "STOP": lambda: _run_macro(108)},
+  "FRUIT WATERING": {"START": lambda: _run_macro(116), "STOP": lambda: _run_macro(114)},
+  "PATIO WATERING": {"START": lambda: _run_macro(113), "STOP": lambda: _run_macro(11)},
+  "POND TOPUP": {"START": lambda: _run_macro(118), "STOP": lambda: _run_macro(111)},
+  "ALL WATERING": {
+    "START": lambda: _send_command(b'action flag set 70 ; macro run 119 ; __wait 200'),
+    "STOP": lambda: user_exception("Cannot stop this process") }
 }
 
 def on_off_command(details):
@@ -82,6 +95,28 @@ def action_command(details):
 
   actions[details["command"]]()
   
+def start_stop_command(details):
+  """Starts or stops a process
+  
+  Sends the specified command to the homevision through netio interface to control the specified process.
+  
+  Args:
+    details: {"action": string, "process": string} 
+  """
+  if "action" not in details:
+    raise Exception("action not specified")
+  elif "process" not in details:
+    raise Exception("process not specified")
+
+  if details["process"] not in process_actions.keys():
+    raise Exception("process not supported. Must be one of: " + ",".join(process_actions.keys()))
+  
+  if details['action'] == "START":
+    process_actions[details["process"]]["START"]()
+  elif details["action"] == "STOP":
+    process_actions[details["process"]]["STOP"]()
+  else:
+    raise Exception("action not supported. Must be either \"START\" or \"STOP\".")
 
 def _switch_on(code):
   _send_command(b"action flag set 56; flag clear 57; flag set 58; \

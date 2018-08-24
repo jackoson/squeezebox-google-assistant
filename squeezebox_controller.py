@@ -1,5 +1,6 @@
 import requests
 import json
+from feedback import UserException
 
 url = "http://192.168.1.126:9000/jsonrpc.js"
 
@@ -25,9 +26,6 @@ search_types = {
   "ARTIST": "contributor"
 }
 default_search_type = "SONG"
-
-class UserException(Exception):
-  pass
 
 def _cache_player(f):
   def cached_f(details):
