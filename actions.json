@@ -7,13 +7,7 @@
     "actions": [
         {
             "name": "com.example.actions.OnOffAppliance",
-            "availability": {
-                "deviceClasses": [
-                    {
-                        "assistantSdkDevice": {}
-                    }
-                ]
-            },
+            "availability": { "deviceClasses": [ { "assistantSdkDevice": {} } ] },
             "intent": {
                 "name": "com.example.intents.OnOffAppliance",
                 "parameters": [
@@ -59,13 +53,7 @@
         },
         {
             "name": "com.example.actions.SqueezeBoxCommand",
-            "availability": {
-                "deviceClasses": [
-                    {
-                        "assistantSdkDevice": {}
-                    }
-                ]
-            },
+            "availability": { "deviceClasses": [ { "assistantSdkDevice": {} } ] },
             "intent": {
                 "name": "com.example.intents.SqueezeBoxCommand",
                 "parameters": [
@@ -110,13 +98,7 @@
         },
         {
             "name": "com.example.actions.SqueezeBoxSearch",
-            "availability": {
-                "deviceClasses": [
-                    {
-                        "assistantSdkDevice": {}
-                    }
-                ]
-            },
+            "availability": { "deviceClasses": [ { "assistantSdkDevice": {} } ] },
             "intent": {
                 "name": "com.example.intents.SqueezeBoxSearch",
                 "parameters": [
@@ -135,7 +117,7 @@
                 ],
                 "trigger": {
                     "queryPatterns": [
-                        "($Room:room)? squeezebox search (for (the)?)? ($SearchType:type)? (matching)? $SchemaOrg_Text:term"
+                        "($Room:room)? squeezebox search (for)? (the)? ($SearchType:type)? (matching)? $SchemaOrg_Text:term"
                     ]
                 }
             },
@@ -165,13 +147,7 @@
         },
         {
             "name": "com.example.actions.SqueezeBoxVolume",
-            "availability": {
-                "deviceClasses": [
-                    {
-                        "assistantSdkDevice": {}
-                    }
-                ]
-            },
+            "availability": { "deviceClasses": [ { "assistantSdkDevice": {} } ] },
             "intent": {
                 "name": "com.example.intents.SqueezeBoxVolume",
                 "parameters": [
@@ -186,7 +162,7 @@
                 ],
                 "trigger": {
                     "queryPatterns": [
-                        "(set)? (the)? ($Room:room)? squeezebox volume $SchemaOrg_Number:percent %"
+                        "(set)? (the)? ($Room:room)? squeezebox volume (to)? $SchemaOrg_Number:percent (%)?"
                     ]
                 }
             },
@@ -215,13 +191,7 @@
         },
         {
             "name": "com.example.actions.SqueezeBoxRadio4",
-            "availability": {
-                "deviceClasses": [
-                    {
-                        "assistantSdkDevice": {}
-                    }
-                ]
-            },
+            "availability": { "deviceClasses": [ { "assistantSdkDevice": {} } ] },
             "intent": {
                 "name": "com.example.intents.SqueezeBoxRadio4",
                 "parameters": [
