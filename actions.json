@@ -472,11 +472,17 @@
                     "synonyms": [
                         "heating 1 hour",
                         "turn on heating",
-                        "turn on heating for 1 hour",
+                        "turn on heating for one hour",
                         "turn on heating for an hour",
                         "turn heating on",
-                        "turn heating on for 1 hour",
-                        "turn heating on for an hour"
+                        "turn heating on for one hour",
+                        "turn heating on for an hour",
+                        "turn on the heating",
+                        "turn on the heating for one hour",
+                        "turn on the heating for an hour",
+                        "turn the heating on",
+                        "turn the heating on for one hour",
+                        "turn the heating on for an hour"
                     ]
                 },
                 {
@@ -492,17 +498,23 @@
                     "synonyms": [
                         "manual advance",
                         "manual advance heating",
-                        "heating manual advance"
+                        "heating manual advance",
+                        "manual advanced",
+                        "manual advanced heating",
+                        "heating manual advanced"
                     ]
                 },
                 {
                     "key": "HOT WATER TOPUP",
                     "synonyms": [
-                        "water topup",
-                        "topup water",
-                        "hot water topup",
-                        "topup hot water",
-                        "turn on hot water"
+                        "water top up",
+                        "top up water",
+                        "hot water top up",
+                        "top up hot water",
+                        "turn on hot water",
+                        "top up the water",
+                        "top up the hot water",
+                        "turn on the hot water"
                     ]
                 },
                 {
@@ -513,7 +525,11 @@
                         "turn off water heating",
                         "hot water off",
                         "turn hot water off",
-                        "turn off hot water"
+                        "turn off hot water",
+                        "turn the water heating off",
+                        "turn off the water heating",
+                        "turn the hot water off",
+                        "turn off the hot water"
                     ]
                 }
             ]
