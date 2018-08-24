@@ -91,7 +91,7 @@ def _switch_off(code):
   macro run " + bytes(str(code), encoding="ascii") + b"; __wait 100")
   
 def _run_macro(code):
-  _send_command(b'action macro run ' + bytes(str(code), encoding="ascii") + '; __wait 100')
+  _send_command(b'action macro run ' + bytes(str(code), encoding="ascii") + b'; __wait 100')
 
  
 def _send_command(command):
