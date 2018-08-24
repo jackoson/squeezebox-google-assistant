@@ -15,7 +15,8 @@ commands = {
   "SLEEP": ["sleep","300"],
   "SLEEP SONG": ["jiveendoftracksleep"],
   "SKIP": ["playlist","index","+1"],
-  "PREVIOUS": ["playlist","index","-1"]
+  "PREVIOUS": ["playlist","index","-1"],
+  "UNSYNC": ["sync","-"]
 }
 
 player_macs = {}

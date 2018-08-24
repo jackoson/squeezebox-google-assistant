@@ -686,6 +686,14 @@
                         "go back",
                         "back"
                     ]
+                },
+                {
+                    "key": "UNSYNC",
+                    "synonyms": [
+                        "unsynchronise",
+                        "unsynchronize",
+                        "unsync"
+                    ]
                 }
             ]
         },
