@@ -136,6 +136,29 @@ def _send_command(command):
   s.send(b"auth b2l0ZW46MnA4NzFrNGVxag\n")
   s.send(command)
   s.close()
+
+def _get_var(id):
+  return int(_run_read_command(b"get var state " + bytes(str(id), encoding="ascii")))
+
+def _get_flag(id):
+  ret = _run_read_command(b"get flag state " + bytes(str(id), encoding="ascii"))
+  if ret in ["Off", "No", "Vacant", "Clear"]:
+    return False
+  elif ret in ["On", "Yes", "Occupied", "Set"]:
+    return True
+  else:
+    raise Exception("Flag value not supported: " + ret)
+
+def _run_read_command(command):
+  s = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
+  s.connect(("192.168.1.138", 11090))
+  s.send(b"auth b2l0ZW46MnA4NzFrNGVxag\n")
+  s.recv(10)
+  s.send(command)
+  s.send(b'\n')
+  response = s.recv(10).decode(encoding="ascii").rstrip()
+  s.close()
+  return response
   
 if __name__ == "__main__":
   while True:
