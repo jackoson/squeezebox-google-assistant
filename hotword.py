@@ -86,6 +86,9 @@ def process_event(event):
                   hv_controller.start_stop_command(params)
               elif command == "com.example.commands.SqueezeBoxCommand":
                   squeeze_controller.simple_command(params)
+              elif command == "com.example.commands.SqueezeBoxQuery":
+                  ans = squeeze_controller.simple_command(params)
+                  log({'type': 'squeezebox response', 'message': str(ans)})
               elif command == "com.example.commands.SqueezeBoxSearch":
                   squeeze_controller.search_and_play(params)
               elif command == "com.example.commands.SqueezeBoxVolume":
