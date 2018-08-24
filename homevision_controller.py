@@ -30,10 +30,10 @@ actions = {
   "BACK LIGHTS TRIGGER"                 : lambda: _run_macro(7),
   "DOWNSTAIRS BATHROOM LEFT RADIATOR"   : lambda: _run_macro(16),
   "DOWNSTAIRS BATHROOM RIGHT RADIATOR"  : lambda: _run_macro(20),
-  "DOWNSTAIRS BATHROOM RADIATORS"       : lambda: _run_macro(16); _run_macro(20),
+  "DOWNSTAIRS BATHROOM RADIATORS"       : lambda: (_run_macro(16), _run_macro(20)),
   "UPSTAIRS BATHROOM LEFT RADIATOR"     : lambda: _run_macro(65),
   "UPSTAIRS BATHROOM RIGHT RADIATOR"    : lambda: _run_macro(69),
-  "UPSTAIRS BATHROOM RADIATORS"         : lambda: _run_macro(65); _run_macro(69)
+  "UPSTAIRS BATHROOM RADIATORS"         : lambda: (_run_macro(65), _run_macro(69))
 }
 
 def on_off_command(details):
