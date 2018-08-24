@@ -167,7 +167,31 @@ def send_music(details):
     raise Exception('direction must be either "from" or "to".')
     
   _make_request(player_macs[details['player']], ["switchplayer","from:" + source,"to:" + dest])
+ 
+@_cache_player
+def sync_player(details):
+  """Sends music from one squeezebox to another
   
+  Sends whatever is playing on the source to the destination squeezebox
+
+  Args:
+    details: {"player": string, "other": string, "direction": string}
+  """
+  if "player" not in details:
+    raise Exception("Player not specified")
+  if "other" not in details:
+    raise Exception("Other player not specified")
+   
+  if details['player'] not in player_macs:
+    raise Exception("player must be one of: " + str(player_macs.keys()))
+  if details['other'] not in player_macs:
+    raise Exception("other player must be one of: " + str(player_macs.keys()))
+  
+  slave = player_macs[details['player']]
+  master = player_macs[details['other']]
+    
+  _make_request(master, ["sync",slave])
+ 
   
 @_cache_player
 def play_radio4(details):

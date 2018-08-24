@@ -352,6 +352,49 @@
                 }
             }
         },
+        { "name": "com.example.actions.SqueezeBoxSync",
+            "availability": { "deviceClasses": [ { "assistantSdkDevice": {} } ] },
+            "intent": {
+                "name": "com.example.intents.SqueezeBoxSync",
+                "parameters": [
+                    {
+                        "name": "player",
+                        "type": "Player"
+                    },
+                    {
+                        "name": "other",
+                        "type": "Player"
+                    }
+                ],
+                "trigger": {
+                    "queryPatterns": [
+                        "sync ($Player:player)? squeezebox to $Player:other"
+                    ]
+                }
+            },
+            "fulfillment": {
+                "staticFulfillment": {
+                    "templatedResponse": {
+                        "items": [
+                            {
+                                "simpleResponse": {
+                                    "textToSpeech": "sync to $other"
+                                }
+                            },
+                            {
+                                "deviceExecution": {
+                                    "command": "com.example.commands.SqueezeBoxSync",
+                                    "params": {
+                                        "player": "$player",
+                                        "other": "$other"
+                                    }
+                                }
+                            }
+                        ]
+                    }
+                }
+            }
+        },
         { "name": "com.example.actions.SqueezeBoxRadio4",
             "availability": { "deviceClasses": [ { "assistantSdkDevice": {} } ] },
             "intent": {
