@@ -28,9 +28,9 @@
                 ],
                 "trigger": {
                     "queryPatterns": [
-                        "(turn)? (the)? $Appliance:appliance $OnOff:state",
-                        "turn $OnOff:state (the)? $Appliance:appliance",
-                        "$Appliance:appliance (turn)? $OnOff:state"
+                        "(turn)? (the)? $Appliance:appliance (light)? (lights)? $OnOff:state",
+                        "turn $OnOff:state (the)? $Appliance:appliance (light)? (lights)?",
+                        "$Appliance:appliance (light)? (lights)? (turn)? $OnOff:state"
                     ]
                 }
             },
@@ -286,53 +286,45 @@
                 {
                     "key": "DOWNSTAIRS BATHROOM MAIN LIGHTS",
                     "synonyms": [
-                        "downstairs bathroom main lights",
-                        "downstairs bathroom lights",
+                        "downstairs bathroom main",
                         "downstairs bathroom",
-                        "bathroom lights",
                         "bathroom"
                     ]
                 },
                 {
                     "key": "LOUNGE LIGHTS",
                     "synonyms": [
-                        "lounge lights",
                         "lounge"
                     ]
                 },
                 {
                     "key": "KITCHEN MAIN LIGHTS",
                     "synonyms": [
-                        "kitchen main lights",
-                        "kitchen lights",
+                        "kitchen main ",
                         "kitchen"
                     ]
                 },
                 {
                     "key": "KITCHEN CUPBOARD LIGHTS",
                     "synonyms": [
-                        "kitchen cupboard lights"
+                        "kitchen cupboard"
                     ]
                 },
                 {
                     "key": "HALL LIGHTS",
                     "synonyms": [
-                        "hall lights",
                         "hall"
                     ]
                 },
                 {
                     "key": "LANDING LIGHTS",
                     "synonyms": [
-                        "landing lights",
                         "landing"
                     ]
                 },
                 {
                     "key": "BEDROOM LAMP",
                     "synonyms": [
-                        "mum and dad's bedroom lights",
-                        "bedroom lights",
                         "mum and dad's bedroom",
                         "bedroom"
                     ]
@@ -340,58 +332,51 @@
                 {
                     "key": "UTILITY ROOM LIGHTS",
                     "synonyms": [
-                        "utility room lights",
                         "utility room"
                     ]
                 },
                 {
                     "key": "UPSTAIRS BATHROOM MAIN LIGHTS",
                     "synonyms": [
-                        "upstairs bathroom main lights",
-                        "upstairs bathroom lights",
+                        "upstairs bathroom main",
                         "upstairs bathroom"
                     ]
                 },
                 {
                     "key": "UPSTAIRS BATHROOM MIRROR LIGHTS",
                     "synonyms": [
-                        "upstairs bathroom mirror lights"
+                        "upstairs bathroom mirror"
                     ]
                 },
                 {
                     "key": "TOILET LIGHTS",
                     "synonyms": [
-                        "toilet lights",
                         "toilet"
                     ]
                 },
                 {
                     "key": "DOWNSTAIRS BATHROOM MIRROR LIGHTS",
                     "synonyms": [
-                        "downstairs bathroom mirror lights",
-                        "bathroom mirror lights",
-                        "mirror lights",
+                        "downstairs bathroom mirror",
+                        "bathroom mirror",
                         "mirror"
                     ]
                 },
                 {
                     "key": "ALL LIGHTS",
                     "synonyms": [
-                        "all lights",
                         "all"
                     ]
                 },
                 {
                     "key": "FRONT LIGHTS",
                     "synonyms": [
-                        "front lights",
                         "front"
                     ]
                 },
                 {
                     "key": "BACK LIGHTS",
                     "synonyms": [
-                        "back lights",
                         "back"
                     ]
                 }
