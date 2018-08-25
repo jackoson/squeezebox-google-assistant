@@ -85,9 +85,13 @@ def process_event(event):
               elif command == "com.example.commands.HomeVisionStartStop":
                   hv_controller.start_stop_command(params)
               elif command == "com.example.commands.HomeVisionVarQuery":
-                  hv_controller.var_query(params)
+                  ans = hv_controller.var_query(params)
+                  speak(str(ans))
+                  log({'type': 'homevision response', 'message': str(ans)})
               elif command == "com.example.commands.HomeVisionFlagQuery":
-                  hv_controller.flag_query(params)
+                  ans = hv_controller.flag_query(params)
+                  speak(str(ans))
+                  log({'type': 'homevision response', 'message': str(ans)})
               elif command == "com.example.commands.SqueezeBoxCommand":
                   squeeze_controller.simple_command(params)
               elif command == "com.example.commands.SqueezeBoxQuery":
