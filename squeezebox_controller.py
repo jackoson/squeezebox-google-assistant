@@ -102,9 +102,11 @@ def search_and_play(details):
     raise UserException("No " + type + " matching: " + details["term"])
 
   entity = result[type+'s_loop'][0]
+  title = entity[type]
   entity_id = entity[type+'_id']
   entity_id_type = 'artist_id:' if details['type'] == "ARTIST" else type+"_id:"
   _make_request(player_macs[details['player']], ["playlistcontrol", "cmd:load", entity_id_type + str(entity_id)])
+  return "Playing %s"%title
 
 @_cache_player
 def spotify_search_and_play(details):
