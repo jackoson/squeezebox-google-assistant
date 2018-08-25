@@ -148,6 +148,8 @@ def var_query(details):
   
   if details["query"] in ["TANK TEMP", "HALL TEMP", "OUTSIDE TEMP"]:
     return "It is %d degrees"%(val)
+  if details["query"] == "BATH COUNT":
+    return "There are %d"%(val)
   else:
     return "It is %d"%(val)
 
