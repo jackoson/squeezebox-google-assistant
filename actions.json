@@ -143,7 +143,8 @@
                 ],
                 "trigger": {
                     "queryPatterns": [
-                        "what is (the)? $HVVarQuery:query"
+                        "what is (the)? $HVVarQuery:query",
+                        "how many $HVVarQuery:query (are there)?"
                     ]
                 }
             },
@@ -1145,6 +1146,7 @@
                 {
                     "key": "BATH COUNT",
                     "synonyms": [
+                        "baths",
                         "bath count",
                         "number of baths",
                         "number of hot baths"
