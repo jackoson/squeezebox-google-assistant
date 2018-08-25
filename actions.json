@@ -329,6 +329,55 @@
                 }
             }
         },
+        { "name": "com.example.actions.SqueezeBoxSpotifySearch",
+            "availability": { "deviceClasses": [ { "assistantSdkDevice": {} } ] },
+            "intent": {
+                "name": "com.example.intents.SqueezeBoxSpotifySearch",
+                "parameters": [
+                    {
+                        "name": "player",
+                        "type": "Player"
+                    },
+                    {
+                        "name": "term",
+                        "type": "SchemaOrg_Text"
+                    },
+                    {
+                        "name": "type",
+                        "type": "SearchType"
+                    }
+                ],
+                "trigger": {
+                    "queryPatterns": [
+                        "($Player:player)? squeezebox search spotify(for)? (the)? ($SearchType:type)? (matching)? $SchemaOrg_Text:term",
+                        "($Player:player)? squeezebox spotify search (for)? (the)? ($SearchType:type)? (matching)? $SchemaOrg_Text:term"
+                    ]
+                }
+            },
+            "fulfillment": {
+                "staticFulfillment": {
+                    "templatedResponse": {
+                        "items": [
+                            {
+                                "simpleResponse": {
+                                    "textToSpeech": "playing $type matching $term"
+                                }
+                            },
+                            {
+                                "deviceExecution": {
+                                    "command": "com.example.commands.SqueezeBoxSpotifySearch",
+                                    "params": {
+                                        "player": "$player",
+                                        "term": "$term",
+                                        "type": "$type"
+                                    }
+                                }
+                            }
+                        ]
+                    }
+                }
+            }
+        },
         { "name": "com.example.actions.SqueezeBoxVolume",
             "availability": { "deviceClasses": [ { "assistantSdkDevice": {} } ] },
             "intent": {

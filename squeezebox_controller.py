@@ -106,7 +106,54 @@ def search_and_play(details):
   entity_id_type = 'artist_id:' if details['type'] == "ARTIST" else type+"_id:"
   _make_request(player_macs[details['player']], ["playlistcontrol", "cmd:load", entity_id_type + str(entity_id)])
 
+@_cache_player
+def spotify_search_and_play(details):
+  """Plays the specified music on spotify
   
+  Searches for the specified music on spotify and loads it on the specified squeezebox
+
+  Args:
+    details: {"player": string, "term": string, "type": string}
+      - term is the string to search for
+      - type is the search mode; ie. track/album...
+  """
+  if "player" not in details:
+    raise Exception("Player not specified")
+  elif "term" not in details:
+    raise Exception("Search term not specified")
+  elif "type" not in details:
+    raise Exception("Search type not specified")
+
+  if details['player'] not in player_macs:
+    raise Exception("player must be one of: " + str(player_macs.keys()))
+  if details['term'] == "":
+    raise UserException("Search term cannot be empty")
+    
+  if details['type'] == '$type':
+    details['type'] = default_search_type
+  elif details['type'] not in search_types:
+    raise Exception("Search type must be one of: " + str(search_types.keys()))
+    
+  search_type_num = {
+    "SONG": ".2",
+    "ALBUM": ".1",
+    "ARTIST": ".0"
+  }
+    
+  item_id = "8_" + details["term"] + search_type_num[details['type']]
+  command = ["spotify","items","0","1", "item_id:" + item_id, "menu:spotify"]
+  result = _make_request(player_macs[details['player']], command)["result"]
+  if result["count"] == 0:
+    raise UserException("No " + type + " matching: " + details["term"] + "on spotify")
+  
+  song = result["item_loop"][0]
+  uri = song["actions"]["play"]["params"]["uri"]
+  title = song["text"]
+  
+  _make_request(player_macs[details['player']], ["spotifyplcmd", "uri:" + uri, "cmd:load"])
+  return "Playing %s"%title
+  
+
 @_cache_player
 def set_volume(details):
   """Sets volume at specified level
@@ -248,7 +295,7 @@ def _get_player_info(player):
 def _make_request(player, command):
   payload = {'method': 'slim.request', 'params': [player, command]}
   req = requests.post(end_point_url, json=payload)
-  return json.loads(req.content.decode("ascii"))
+  return json.loads(req.content.decode("utf-8"))
 
 _populate_player_macs()
 
