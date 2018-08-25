@@ -53,15 +53,15 @@ WARNING_NOT_REGISTERED = """
 
 
 class Logger(object):
-    def __init__(self, filename="assistant.log"):
-        self.log = open(filename, "a")
+    def __init__(self, filename):
+        self.filename = filename
 
     def write(self, message):
-        self.log.write(message)
-        self.log.flush()
+        with open(self.filename, "a") as f:
+          f.write(message)
 
     def flush(self):
-        self.log.flush()
+        pass
   
 def log(x):
   now = datetime.datetime.now().strftime('%F_%X')
