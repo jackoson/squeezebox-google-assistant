@@ -32,7 +32,7 @@ from google.assistant.library.device_helpers import register_device
 import homevision_controller as hv_controller
 import squeezebox_controller as squeeze_controller
 from feedback import UserException
-
+from speech_controller import speak
 
 import sys
 import datetime
@@ -88,6 +88,7 @@ def process_event(event):
                   squeeze_controller.simple_command(params)
               elif command == "com.example.commands.SqueezeBoxQuery":
                   ans = squeeze_controller.simple_query(params)
+                  speak(str(ans))
                   log({'type': 'squeezebox response', 'message': str(ans)})
               elif command == "com.example.commands.SqueezeBoxSearch":
                   squeeze_controller.search_and_play(params)
@@ -102,6 +103,7 @@ def process_event(event):
             except UserException as e:
               log({'type': 'squeezebox response', 'message': str(e)})
             except Exception as e:
+              speak(str(e))
               log({'type': 'exception', 'message': str(e)})
               
     elif event.type == EventType.ON_RECOGNIZING_SPEECH_FINISHED:
