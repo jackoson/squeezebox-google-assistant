@@ -50,6 +50,18 @@ process_actions = {
     "STOP": lambda: user_exception("Cannot stop this process") }
 }
 
+var_queries = {
+  "TANK TEMP": 81,
+  "HALL TEMP": 6,
+  "OUTSIDE TEMP": 7,
+  "BATH COUNT": 82
+}
+
+flag_queries = {
+  "HOT WATER": 4,
+  "HEATING": 3,
+}
+
 def on_off_command(details):
   """Send an on or off command to an appliance
   
@@ -118,6 +130,46 @@ def start_stop_command(details):
   else:
     raise Exception("action not supported. Must be either \"START\" or \"STOP\".")
 
+def var_query(details):
+  """Returns the answer to a query on variable
+  
+  Returns the answer to a query on the specified variable using netio
+  
+  Args:
+    details: {"query": string} 
+  """
+  if "query" not in details:
+    raise Exception("query not specified")
+  
+  if details["query"] not in var_queries.keys():
+    raise Exception("query not supported. Must be one of: " + ",".join(var_queries.keys()))
+  
+  val = _get_var(var_queries[details["query"]])
+  
+  if details["query"] in ["TANK TEMP", "HALL TEMP", "OUTSIDE TEMP"]:
+    return "It is %d degrees"%(val)
+  else:
+    return "It is %d"%(val)
+
+def flag_query(details):
+  """Returns the answer to a query on flag
+  
+  Returns the answer to a query on the specified variable using netio
+  
+  Args:
+    details: {"query": string} 
+  """
+  if "query" not in details:
+    raise Exception("query not specified")
+  
+  if details["query"] not in var_queries.keys():
+    raise Exception("query not supported. Must be one of: " + ",".join(var_queries.keys()))
+  
+  val = _get_var(flag_queries[details["query"]])
+  
+  return "yes" if val else "no"
+  
+ 
 def _switch_on(code):
   _send_command(b"action flag set 56; flag clear 57; flag set 58; \
     macro run " + bytes(str(code), encoding="ascii") + b"; __wait 100")
