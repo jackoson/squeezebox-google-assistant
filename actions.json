@@ -131,6 +131,74 @@
                 }
             }
         },
+        { "name": "com.example.actions.HomeVisionVarQuery",
+            "availability": { "deviceClasses": [ { "assistantSdkDevice": {} } ] },
+            "intent": {
+                "name": "com.example.intents.HomeVisionVarQuery",
+                "parameters": [
+                    {
+                        "name": "query",
+                        "type": "HVVarQuery"
+                    }
+                ],
+                "trigger": {
+                    "queryPatterns": [
+                        "what is (the)? $HVVarQuery:query"
+                    ]
+                }
+            },
+            "fulfillment": {
+                "staticFulfillment": {
+                    "templatedResponse": {
+                        "items": [
+                            {
+                                "deviceExecution": {
+                                    "command": "com.example.commands.HomeVisionVarQuery",
+                                    "params": {
+                                        "query": "$query"
+                                    }
+                                }
+                            }
+                        ]
+                    }
+                }
+            }
+        },
+        { "name": "com.example.actions.HomeVisionFlagQuery",
+            "availability": { "deviceClasses": [ { "assistantSdkDevice": {} } ] },
+            "intent": {
+                "name": "com.example.intents.HomeVisionFlagQuery",
+                "parameters": [
+                    {
+                        "name": "query",
+                        "type": "HVFlagQuery"
+                    }
+                ],
+                "trigger": {
+                    "queryPatterns": [
+                        "is (the)? $HVFlagQuery:query on",
+                        "is (the)? $HVFlagQuery:query occupied",
+                        "is (the)? $HVFlagQuery:query set"
+                    ]
+                }
+            },
+            "fulfillment": {
+                "staticFulfillment": {
+                    "templatedResponse": {
+                        "items": [
+                            {
+                                "deviceExecution": {
+                                    "command": "com.example.commands.HomeVisionFlagQuery",
+                                    "params": {
+                                        "query": "$query"
+                                    }
+                                }
+                            }
+                        ]
+                    }
+                }
+            }
+        },
         { "name": "com.example.actions.SqueezeBoxCommand",
             "availability": { "deviceClasses": [ { "assistantSdkDevice": {} } ] },
             "intent": {
@@ -991,6 +1059,63 @@
                     "key": "TO",
                     "synonyms": [
                         "to"
+                    ]
+                }
+            ]
+        },
+        { "name": "$HVVarQuery",
+            "entities": [
+                {
+                    "key": "TANK TEMP",
+                    "synonyms": [
+                        "tank temp",
+                        "tank temperature",
+                        "hot tank temp",
+                        "hot tank temperature",
+                        "temperature of the tank",
+                        "temperature of the hot tank",
+                        "temperature of the hot water tank"
+                    ]
+                },
+                {
+                    "key": "HALL TEMP",
+                    "synonyms": [
+                        "hall temp",
+                        "hall temperature",
+                        "temperature of the hall"
+                    ]
+                },
+                {
+                    "key": "OUTSIDE TEMP",
+                    "synonyms": [
+                        "outside temp",
+                        "outside temperature",
+                        "temperature outside"
+                    ]
+                },
+                {
+                    "key": "BATH COUNT",
+                    "synonyms": [
+                        "bath count",
+                        "number of baths",
+                        "number of hot baths"
+                    ]
+                }
+            ]
+        },
+        { "name": "$HVFlagQuery",
+            "entities": [
+                {
+                    "key": "HOT WATER",
+                    "synonyms": [
+                        "boiler",
+                        "hot water"
+                    ]
+                },
+                {
+                    "key": "HEATING",
+                    "synonyms": [
+                        "heating"
                     ]
                 }
             ]
