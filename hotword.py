@@ -193,8 +193,11 @@ def main():
         events = assistant.start()
 
         device_id = assistant.device_id
-        print('device_model_id:', device_model_id)
-        print('device_id:', device_id + '\n')
+        log({
+          "type": "starting up",
+          "device_model_id": device_model_id,
+          "device_id": device_id
+        })
 
         # Re-register if "device_id" is different from the last "device_id":
         if should_register or (device_id != last_device_id):
