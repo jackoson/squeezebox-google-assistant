@@ -227,7 +227,7 @@
                         "items": [
                             {
                                 "simpleResponse": {
-                                    "textToSpeech": "$player squeezebox $command"
+                                    "textToSpeech": "squeezebox $command"
                                 }
                             },
                             {
@@ -311,11 +311,6 @@
                     "templatedResponse": {
                         "items": [
                             {
-                                "simpleResponse": {
-                                    "textToSpeech": "playing $type matching $term"
-                                }
-                            },
-                            {
                                 "deviceExecution": {
                                     "command": "com.example.commands.SqueezeBoxSearch",
                                     "params": {
@@ -350,7 +345,7 @@
                 ],
                 "trigger": {
                     "queryPatterns": [
-                        "($Player:player)? squeezebox search spotify(for)? (the)? ($SearchType:type)? (matching)? $SchemaOrg_Text:term",
+                        "($Player:player)? squeezebox search spotify (for)? (the)? ($SearchType:type)? (matching)? $SchemaOrg_Text:term",
                         "($Player:player)? squeezebox spotify search (for)? (the)? ($SearchType:type)? (matching)? $SchemaOrg_Text:term"
                     ]
                 }
@@ -359,11 +354,6 @@
                 "staticFulfillment": {
                     "templatedResponse": {
                         "items": [
-                            {
-                                "simpleResponse": {
-                                    "textToSpeech": "playing $type matching $term"
-                                }
-                            },
                             {
                                 "deviceExecution": {
                                     "command": "com.example.commands.SqueezeBoxSpotifySearch",
@@ -486,7 +476,8 @@
                 ],
                 "trigger": {
                     "queryPatterns": [
-                        "synchronise ($Player:player)? squeezebox to $Player:other"
+                        "synchronise ($Player:player)? squeezebox to $Player:other",
+                        "synchronise ($Player:player)? squeezebox with $Player:other"
                     ]
                 }
             },
@@ -536,7 +527,7 @@
                         "items": [
                             {
                                 "simpleResponse": {
-                                    "textToSpeech": "playing BBC radio 4 on $player squeezebox"
+                                    "textToSpeech": "playing BBC radio 4 on squeezebox"
                                 }
                             },
                             {
