@@ -3,6 +3,7 @@ from subprocess import call,DEVNULL
 from sys import argv
 import os
 
+
 speech_path = os.path.dirname(os.path.realpath(__file__)) + '/speech.sh'
 
 def speak(text):
