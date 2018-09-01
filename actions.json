@@ -385,7 +385,8 @@
                 ],
                 "trigger": {
                     "queryPatterns": [
-                        "(set)? (the)? ($Player:player)? squeezebox volume (to)? $SchemaOrg_Number:percent %"
+                        "(set)? (the)? ($Player:player)? squeezebox volume (to)? $SchemaOrg_Number:percent %",
+                        "($Player:player)? squeezebox (set)? (the)? volume (to)? $SchemaOrg_Number:percent %"
                     ]
                 }
             },
