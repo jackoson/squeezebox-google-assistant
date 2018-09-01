@@ -85,27 +85,27 @@ def process_event(event):
               elif command == "com.example.commands.HomeVisionStartStop":
                   hv_controller.start_stop_command(params)
               elif command == "com.example.commands.HomeVisionVarQuery":
-                  ans = hv_controller.var_query(params)
-                  speak(str(ans))
-                  log({'type': 'homevision response', 'message': str(ans)})
+                  ans = str(hv_controller.var_query(params))
+                  speak(ans)
+                  log({'type': 'homevision response', 'message': ans})
               elif command == "com.example.commands.HomeVisionFlagQuery":
-                  ans = hv_controller.flag_query(params)
-                  speak(str(ans))
-                  log({'type': 'homevision response', 'message': str(ans)})
+                  ans = str(hv_controller.flag_query(params))
+                  speak(ans)
+                  log({'type': 'homevision response', 'message': ans})
               elif command == "com.example.commands.SqueezeBoxCommand":
                   squeeze_controller.simple_command(params)
               elif command == "com.example.commands.SqueezeBoxQuery":
-                  ans = squeeze_controller.simple_query(params)
-                  speak(str(ans))
-                  log({'type': 'squeezebox response', 'message': str(ans)})
+                  ans = str(squeeze_controller.simple_query(params))
+                  speak(ans)
+                  log({'type': 'squeezebox response', 'message': ans})
               elif command == "com.example.commands.SqueezeBoxSearch":
-                  ans = squeeze_controller.search_and_play(params)
-                  speak(str(ans))
-                  log({'type': 'squeezebox response', 'message': str(ans)})
+                  ans = str(squeeze_controller.search_and_play(params))
+                  speak(ans)
+                  log({'type': 'squeezebox response', 'message': ans})
               elif command == "com.example.commands.SqueezeBoxSpotifySearch":
-                  ans = squeeze_controller.spotify_search_and_play(params)
-                  speak(str(ans))
-                  log({'type': 'squeezebox response', 'message': str(ans)})
+                  ans = str(squeeze_controller.spotify_search_and_play(params))
+                  speak(ans)
+                  log({'type': 'squeezebox response', 'message': ans})
               elif command == "com.example.commands.SqueezeBoxVolume":
                   squeeze_controller.set_volume(params)
               elif command == "com.example.commands.SqueezeBoxSendMusic":
