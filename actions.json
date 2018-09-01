@@ -1162,7 +1162,12 @@
                         "hot tank temperature",
                         "temperature of the tank",
                         "temperature of the hot tank",
-                        "temperature of the hot water tank"
+                        "temperature of the hot water tank",
+                        "total tank temp",
+                        "total tank temperature",
+                        "total temperature of the tank",
+                        "total temperature of the hot tank",
+                        "total temperature of the hot water tank"
                     ]
                 },
                 {
@@ -1197,8 +1202,10 @@
                     "key": "RAIN TODAY",
                     "synonyms": [
                         "rain fall",
+                        "today's rain fall",
                         "rain fall today",
                         "did it rain today",
+                        "has it rained today",
                         "millimeters did it rain today",
                         "millimeters has it rained",
                         "millimeters has it rained today"
@@ -1207,8 +1214,9 @@
                 {
                     "key": "RAIN YESTERDAY",
                     "synonyms": [
+                        "yesterday's rain fall",
                         "rain fall yesterday",
-                        "did it rain today",
+                        "did it rain yesterday",
                         "millimeters did it rain yesterday",
                         "millimeters has it rained yesterday"
                     ]
@@ -1236,7 +1244,9 @@
                     "synonyms": [
                         "solar pump",
                         "solar panel",
-                        "solar panels"
+                        "solar panels",
+                        "solar water panel",
+                        "solar water panels"
                     ]
                 },{
                     "key": "HOT WATER",
