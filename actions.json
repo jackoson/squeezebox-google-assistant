@@ -812,7 +812,7 @@
                     ]
                 },
                 {
-                    "key": "SHUFFLE SONG",
+                    "key": "SHUFFLE SONGS",
                     "synonyms": [
                         "shuffle on",
                         "shuffle song",
@@ -820,7 +820,7 @@
                     ]
                 },
                 {
-                    "key": "SHUFFLE ALBUM",
+                    "key": "SHUFFLE ALBUMS",
                     "synonyms": [
                         "shuffle album",
                         "shuffle albums"
