@@ -51,9 +51,10 @@ process_actions = {
 }
 
 var_queries = {
-  "TANK TEMP": 81,
   "HALL TEMP": 6,
   "OUTSIDE TEMP": 7,
+  "LIGHT LEVEL": 8,
+  "TANK TEMP": 81,
   "BATH COUNT": 82,
   "HEATING STATE": 93,
   "RAIN TODAY": (95, 96),

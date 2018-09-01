@@ -1218,6 +1218,14 @@
                     "synonyms": [
                         "heating state"
                     ]
+                },
+                {
+                    "key": "LIGHT LEVEL",
+                    "synonyms": [
+                        "light level",
+                        "outside light level",
+                        "light"
+                    ]
                 }
             ]
         },
