@@ -65,7 +65,8 @@ flag_queries = {
   "SOLAR PUMP": 1,
   "HEATING": 3,
   "HOT WATER": 4,
-  "HOUSE SECURE": 5
+  "HOUSE SECURE": 5,
+  "RAINING": 79
 }
 
 def on_off_command(details):

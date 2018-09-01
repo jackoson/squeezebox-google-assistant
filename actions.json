@@ -1266,6 +1266,13 @@
                     "synonyms": [
                         "house secure"
                     ]
+                },
+                {
+                    "key": "RAINING",
+                    "synonyms": [
+                        "it raining",
+                        "it raining now"
+                    ]
                 }
             ]
         }
