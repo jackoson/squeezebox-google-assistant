@@ -144,7 +144,8 @@
                 "trigger": {
                     "queryPatterns": [
                         "what is (the)? $HVVarQuery:query",
-                        "how many $HVVarQuery:query (are there)?"
+                        "how many $HVVarQuery:query (are there)?",
+                        "how much $HVVarQuery:query (is there)? (was there)?"
                     ]
                 }
             },
@@ -177,9 +178,11 @@
                 ],
                 "trigger": {
                     "queryPatterns": [
+                        "are (the)? $HVFlagQuery:query on",
                         "is (the)? $HVFlagQuery:query on",
                         "is (the)? $HVFlagQuery:query occupied",
-                        "is (the)? $HVFlagQuery:query set"
+                        "is (the)? $HVFlagQuery:query set",
+                        "is (the)? $HVFlagQuery:query"
                     ]
                 }
             },
@@ -1186,7 +1189,28 @@
                         "hot baths",
                         "bath count",
                         "number of baths",
-                        "number of hot baths"
+                        "number of hot baths",
+                        "hot water"
+                    ]
+                },
+                {
+                    "key": "RAIN TODAY",
+                    "synonyms": [
+                        "rain fall",
+                        "rain fall today",
+                        "did it rain today",
+                        "millimeters did it rain today",
+                        "millimeters has it rained",
+                        "millimeters has it rained today"
+                    ]
+                },
+                {
+                    "key": "RAIN YESTERDAY",
+                    "synonyms": [
+                        "rain fall yesterday",
+                        "did it rain today",
+                        "millimeters did it rain yesterday",
+                        "millimeters has it rained yesterday"
                     ]
                 }
             ]
@@ -1194,6 +1218,13 @@
         { "name": "$HVFlagQuery",
             "entities": [
                 {
+                    "key": "SOLAR PUMP",
+                    "synonyms": [
+                        "solar pump",
+                        "solar pannel",
+                        "solar pannels"
+                    ]
+                },{
                     "key": "HOT WATER",
                     "synonyms": [
                         "boiler",
@@ -1204,6 +1235,12 @@
                     "key": "HEATING",
                     "synonyms": [
                         "heating"
+                    ]
+                },
+                {
+                    "key": "HOUSE SECURE",
+                    "synonyms": [
+                        "house secure"
                     ]
                 }
             ]

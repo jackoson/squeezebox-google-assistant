@@ -54,12 +54,16 @@ var_queries = {
   "TANK TEMP": 81,
   "HALL TEMP": 6,
   "OUTSIDE TEMP": 7,
-  "BATH COUNT": 82
+  "BATH COUNT": 82,
+  "RAIN TODAY": (95, 96),
+  "RAIN YESTERDAY": 97
 }
 
 flag_queries = {
-  "HOT WATER": 4,
+  "SOLAR PUMP": 1,
   "HEATING": 3,
+  "HOT WATER": 4,
+  "HOUSE SECURE": 5
 }
 
 def on_off_command(details):
@@ -144,10 +148,20 @@ def var_query(details):
   if details["query"] not in var_queries.keys():
     raise Exception("query not supported. Must be one of: " + ",".join(var_queries.keys()))
   
-  val = _get_var(var_queries[details["query"]])
+  code = var_queries[details["query"]]
+  if type(code) == int:
+    val = _get_var(code)
+  elif type(details["query"]) == tuple:
+    val = [_get_var(c) for c in code]
+  else:
+    raise Exception("Internal Exception: code is not valid")
   
   if details["query"] in ["TANK TEMP", "HALL TEMP", "OUTSIDE TEMP"]:
     return "It is %d degrees"%(val)
+  if details["query"] == "RAIN TODAY":
+    return "There was %d point %d millimeters"%(val[0], val[1])
+  if details["query"] == "RAIN YESTERDAY":
+    return "There was %d millimeters"%(val)
   if details["query"] == "BATH COUNT":
     return "There are %d"%(val)
   else:
