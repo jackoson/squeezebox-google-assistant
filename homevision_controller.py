@@ -153,7 +153,7 @@ def var_query(details):
   code = var_queries[details["query"]]
   if type(code) == int:
     val = _get_var(code)
-  elif type(details["query"]) == tuple:
+  elif type(code) == tuple:
     val = [_get_var(c) for c in code]
   else:
     raise Exception("Internal Exception: code is not valid")
