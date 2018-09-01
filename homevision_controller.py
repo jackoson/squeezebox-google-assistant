@@ -55,6 +55,7 @@ var_queries = {
   "HALL TEMP": 6,
   "OUTSIDE TEMP": 7,
   "BATH COUNT": 82,
+  "HEATING STATE": 93,
   "RAIN TODAY": (95, 96),
   "RAIN YESTERDAY": 97
 }

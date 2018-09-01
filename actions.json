@@ -1212,6 +1212,12 @@
                         "millimeters did it rain yesterday",
                         "millimeters has it rained yesterday"
                     ]
+                },
+                {
+                    "key": "HEATING STATE",
+                    "synonyms": [
+                        "heating state"
+                    ]
                 }
             ]
         },
