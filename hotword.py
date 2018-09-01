@@ -115,10 +115,13 @@ def process_event(event):
               elif command == "com.example.commands.SqueezeBoxRadio4":
                   squeeze_controller.play_radio4(params)
             except UserException as e:
-              log({'type': 'squeezebox response', 'message': str(e)})
+              e = str(e)
+              speak(e)
+              log({'type': 'squeezebox response', 'message': e})
             except Exception as e:
-              speak(str(e))
-              log({'type': 'exception', 'message': str(e)})
+              e = str(e)
+              speak(e)
+              log({'type': 'exception', 'message': e})
               
     elif event.type == EventType.ON_RECOGNIZING_SPEECH_FINISHED:
       log({'type': 'speech', 'text': event.args['text']})
