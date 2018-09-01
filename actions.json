@@ -804,6 +804,49 @@
                         "unsynchronize",
                         "unsync"
                     ]
+                },
+                {
+                    "key": "SHUFFLE OFF",
+                    "synonyms": [
+                        "shuffle off"
+                    ]
+                },
+                {
+                    "key": "SHUFFLE SONG",
+                    "synonyms": [
+                        "shuffle on",
+                        "shuffle song",
+                        "shuffle songs"
+                    ]
+                },
+                {
+                    "key": "SHUFFLE ALBUM",
+                    "synonyms": [
+                        "shuffle album",
+                        "shuffle albums"
+                    ]
+                },
+                {
+                    "key": "REPEAT OFF",
+                    "synonyms": [
+                        "repeat off"
+                    ]
+                },
+                {
+                    "key": "REPEAT SONG",
+                    "synonyms": [
+                        "repeat song",
+                        "repeat this song",
+                        "repeat on"
+                    ]
+                },
+                {
+                    "key": "REPEAT PLAYLIST",
+                    "synonyms": [
+                        "repeat playlist",
+                        "repeat the playlist",
+                        "repeat this playlist"
+                    ]
                 }
             ]
         },

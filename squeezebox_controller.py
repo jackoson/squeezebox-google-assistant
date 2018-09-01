@@ -16,7 +16,13 @@ commands = {
   "SLEEP SONG": ["jiveendoftracksleep"],
   "SKIP": ["playlist","index","+1"],
   "PREVIOUS": ["playlist","index","-1"],
-  "UNSYNC": ["sync","-"]
+  "UNSYNC": ["sync","-"],
+  "SHUFFLE OFF": ["playlist","shuffle",0],
+  "SHUFFLE SONG": ["playlist","shuffle",1],
+  "SHUFFLE ALBUM": ["playlist","shuffle",2],
+  "REPEAT OFF": ["playlist","repeat",0],
+  "REPEAT SONG": ["playlist","repeat",1],
+  "REPEAT PLAYLIST": ["playlist","repeat",2]
 }
 
 player_macs = {}
