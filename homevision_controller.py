@@ -184,7 +184,7 @@ def flag_query(details):
   if details["query"] not in flag_queries.keys():
     raise Exception("query not supported. Must be one of: " + ",".join(flag_queries.keys()))
   
-  val = _get_var(flag_queries[details["query"]])
+  val = _get_flag(flag_queries[details["query"]])
   
   return "yes" if val else "no"
   
