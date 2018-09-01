@@ -63,7 +63,7 @@ def simple_command(details):
   if details['command'] not in commands:
     raise Exception("command must be one of: " + str(commands.keys()))
   if details['player'] not in player_macs:
-    raise Exception("player must be one of: " + str(player_macs.keys()))
+    raise Exception("player must be one of: " + ", ".join(player_macs.keys()))
 
   _make_request(player_macs[details['player']], commands[details['command']])
 
@@ -86,7 +86,7 @@ def search_and_play(details):
     raise Exception("Search type not specified")
 
   if details['player'] not in player_macs:
-    raise Exception("player must be one of: " + str(player_macs.keys()))
+    raise Exception("player must be one of: " + ", ".join(player_macs.keys()))
   if details['term'] == "":
     raise UserException("Search term cannot be empty")
     
@@ -127,7 +127,7 @@ def spotify_search_and_play(details):
     raise Exception("Search type not specified")
 
   if details['player'] not in player_macs:
-    raise Exception("player must be one of: " + str(player_macs.keys()))
+    raise Exception("player must be one of: " + ", ".join(player_macs.keys()))
   if details['term'] == "":
     raise UserException("Search term cannot be empty")
     
@@ -171,7 +171,7 @@ def set_volume(details):
     raise Exception("Percentage not specified")
   
   if details['player'] not in player_macs:
-    raise Exception("player must be one of: " + str(player_macs.keys()))
+    raise Exception("player must be one of: " + ", ".join(player_macs.keys()))
   
   if type(details['percent']) == int:
     percent = details['percent']
@@ -203,7 +203,7 @@ def send_music(details):
     raise Exception("Direction not specified")
   
   if details['player'] not in player_macs:
-    raise Exception("player must be one of: " + str(player_macs.keys()))
+    raise Exception("player must be one of: " + ", ".join(player_macs.keys()))
   if details['other'] not in player_macs:
     raise Exception("other player must be one of: " + str(player_macs.keys()))
   
@@ -233,7 +233,7 @@ def sync_player(details):
     raise Exception("Other player not specified")
    
   if details['player'] not in player_macs:
-    raise Exception("player must be one of: " + str(player_macs.keys()))
+    raise Exception("player must be one of: " + ", ".join(player_macs.keys()))
   if details['other'] not in player_macs:
     raise Exception("other player must be one of: " + str(player_macs.keys()))
   
@@ -276,7 +276,7 @@ def simple_query(details):
   if details['query'] not in queries:
     raise Exception("Query must be one of: " + str(queries.keys()))
   if details['player'] not in player_macs:
-    raise Exception("player must be one of: " + str(player_macs.keys()))
+    raise Exception("player must be one of: " + ", ".join(player_macs.keys()))
 
   player_info = _get_player_info(player_macs[details['player']])
   
