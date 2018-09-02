@@ -144,6 +144,7 @@
                 "trigger": {
                     "queryPatterns": [
                         "what is (the)? $HVVarQuery:query",
+                        "what's (the)? $HVVarQuery:query",
                         "how many $HVVarQuery:query (are there)?",
                         "how much $HVVarQuery:query (is there)? (was there)?"
                     ]
