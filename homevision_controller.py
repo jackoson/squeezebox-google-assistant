@@ -215,7 +215,7 @@ def _get_flag(id):
   ret = _run_read_command(b"get flag state " + bytes(str(id), encoding="ascii"))
   if ret in ["Off", "No", "Vacant", "Clear"]:
     return False
-  elif ret in ["On", "Yes", "Occupied", "Set"]:
+  elif ret in ["On", "Yes", "Occupied", "Set", "Pumping"]:
     return True
   else:
     raise Exception("Flag value not supported: " + ret)
