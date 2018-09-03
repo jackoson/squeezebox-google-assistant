@@ -30,7 +30,7 @@ from google.assistant.library.file_helpers import existing_file
 from google.assistant.library.device_helpers import register_device
 
 import homevision_controller as hv_controller
-import squeezebox_controller as squeeze_controller
+import tygarwen_squeezebox_controller as squeezebox
 from feedback import UserException
 from speech_controller import speak
 
@@ -114,7 +114,7 @@ def process_event(event):
                   squeeze_controller.sync_player(params)
               elif command == "com.example.commands.SqueezeBoxRadio4":
                   squeeze_controller.play_radio4(params)
-            except UserException as e:
+            except squeezebox.UserException, UserException as e:
               e = str(e)
               speak(e)
               log({'type': 'squeezebox response', 'message': e})
@@ -132,6 +132,9 @@ def process_event(event):
     elif event.type == EventType.ON_RENDER_RESPONSE:
       log({'type': 'google response', 'text': event.args['text']})
 
+def setup_controllers():
+  global squeeze_controller
+  squeeze_controller = squeezebox.TygarwenSqueezeBoxController("192.168.1.126", 9000)
 
 def main():
     parser = argparse.ArgumentParser(
@@ -216,6 +219,8 @@ def main():
                     }, f)
             else:
                 print(WARNING_NOT_REGISTERED)
+
+        setup_controllers()
 
         for event in events:
             process_event(event)
