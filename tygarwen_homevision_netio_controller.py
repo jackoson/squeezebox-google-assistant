@@ -73,10 +73,10 @@ flag_return_values = {
 }
 
 on_off_commands = {
-  "ON": lambda code: b"action flag set 56; flag clear 57; flag set 58; \
-    macro run " + bytes(str(code), encoding="ascii") + b"; __wait 100",
-  "OFF": lambda code: b"action flag clear 56; flag set 57; flag set 58; \
-    macro run " + bytes(str(code), encoding="ascii") + b"; __wait 100"
+  "ON": lambda code: Command(b"action flag set 56; flag clear 57; flag set 58; \
+    macro run " + bytes(str(code), encoding="ascii") + b"; __wait 100"),
+  "OFF": lambda code: Command(b"action flag clear 56; flag set 57; flag set 58; \
+    macro run " + bytes(str(code), encoding="ascii") + b"; __wait 100")
 }
 
 class TygarwenHomeVisionController(HomeVisionController):
