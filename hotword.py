@@ -134,7 +134,7 @@ def process_event(event):
 def setup_controllers():
   global squeeze_controller, hv_controller
   squeeze_controller = squeezebox.TygarwenSqueezeBoxController("192.168.1.126", 9000)
-  hv_controller = homevision.TygarwenHomeVisionController("192.168.1.138", 11090, "b2l0ZW46MnA4NzFrNGVxag")
+  hv_controller = homevision.TygarwenHomeVisionController("192.168.1.138", 11090, netio_key)
 
 
 def main():
@@ -166,11 +166,16 @@ def main():
                         version='%(prog)s ' + Assistant.__version_str__())
     parser.add_argument('--logfile', type=str, required=False,
                         help='file to write the log to')
+    parser.add_argument('--netio_key', type=str, required=True,
+                        help='key to use for netio authorisation')
 
     args = parser.parse_args()
 
     if args.logfile:
         sys.stdout = sys.stderr = Logger(args.logfile)
+        
+    global netio_key
+    netio_key = args.netio_key
 
     with open(args.credentials, 'r') as f:
         credentials = google.oauth2.credentials.Credentials(token=None,
