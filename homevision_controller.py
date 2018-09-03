@@ -2,7 +2,7 @@
 import socket
 from feedback import UserException
 
-appliance_codes = {
+on_off_appliance_codes = {
   "DOWNSTAIRS BATHROOM MAIN LIGHTS"     : 8,
   "DOWNSTAIRS BATHROOM FAN"             : 23,
   "CUPBOARD LIGHTS"                     : 26,
@@ -82,10 +82,10 @@ def on_off_command(details):
   elif "state" not in details:
     raise Exception("state not specified")
 
-  if details["appliance"] not in appliance_codes.keys():
-    raise Exception("appliance not supported. Must be one of: " + ",".join(appliance_codes.keys()))
+  if details["appliance"] not in on_off_appliance_codes.keys():
+    raise Exception("appliance not supported. Must be one of: " + ",".join(on_off_appliance_codes.keys()))
 
-  appliance_code = appliance_codes[details["appliance"]]
+  appliance_code = on_off_appliance_codes[details["appliance"]]
   
   if details["appliance"] in ["ALL LIGHTS", "FRONT LIGHTS", "BACK LIGHTS"]:
     _run_macro(appliance_code)
