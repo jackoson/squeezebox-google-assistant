@@ -114,7 +114,7 @@ def process_event(event):
                   squeeze_controller.sync_player(params)
               elif command == "com.example.commands.SqueezeBoxRadio4":
                   squeeze_controller.play_radio4(params)
-            except squeezebox.UserException, UserException as e:
+            except (squeezebox.UserException, UserException) as e:
               e = str(e)
               speak(e)
               log({'type': 'squeezebox response', 'message': e})
