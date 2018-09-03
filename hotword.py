@@ -29,7 +29,7 @@ from google.assistant.library.event import EventType
 from google.assistant.library.file_helpers import existing_file
 from google.assistant.library.device_helpers import register_device
 
-import homevision_controller as hv_controller
+import tygarwen_homevision_netio_controller as homevision
 import tygarwen_squeezebox_controller as squeezebox
 from feedback import UserException
 from speech_controller import speak
@@ -135,6 +135,8 @@ def process_event(event):
 def setup_controllers():
   global squeeze_controller
   squeeze_controller = squeezebox.TygarwenSqueezeBoxController("192.168.1.126", 9000)
+  hv_controller = homevision.TygarwenHomeVisionController("192.168.1.138", 11090, "b2l0ZW46MnA4NzFrNGVxag")
+
 
 def main():
     parser = argparse.ArgumentParser(
