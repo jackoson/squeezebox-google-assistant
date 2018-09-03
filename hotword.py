@@ -133,7 +133,7 @@ def process_event(event):
       log({'type': 'google response', 'text': event.args['text']})
 
 def setup_controllers():
-  global squeeze_controller
+  global squeeze_controller, hv_controller
   squeeze_controller = squeezebox.TygarwenSqueezeBoxController("192.168.1.126", 9000)
   hv_controller = homevision.TygarwenHomeVisionController("192.168.1.138", 11090, "b2l0ZW46MnA4NzFrNGVxag")
 
