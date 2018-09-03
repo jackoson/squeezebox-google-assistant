@@ -1,6 +1,5 @@
 
 import socket
-from feedback import UserException
 
 class UserException(Exception):
   pass

@@ -31,7 +31,6 @@ from google.assistant.library.device_helpers import register_device
 
 import tygarwen_homevision_netio_controller as homevision
 import tygarwen_squeezebox_controller as squeezebox
-from feedback import UserException
 from speech_controller import speak
 
 import sys
@@ -114,7 +113,7 @@ def process_event(event):
                   squeeze_controller.sync_player(params)
               elif command == "com.example.commands.SqueezeBoxRadio4":
                   squeeze_controller.play_radio4(params)
-            except (squeezebox.UserException, UserException) as e:
+            except (squeezebox.UserException, homevision.UserException) as e:
               e = str(e)
               speak(e)
               log({'type': 'squeezebox response', 'message': e})
