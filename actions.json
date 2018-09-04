@@ -306,7 +306,8 @@
                 ],
                 "trigger": {
                     "queryPatterns": [
-                        "($Player:player)? squeezebox search (for)? (the)? ($SearchType:type)? (matching)? $SchemaOrg_Text:term"
+                        "($Player:player)? squeezebox search (for)? (the)? ($SearchType:type)? (matching)? $SchemaOrg_Text:term",
+                        "($Player:player)? squeezebox play (the)? ($SearchType:type)? (matching)? $SchemaOrg_Text:term"
                     ]
                 }
             },
