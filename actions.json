@@ -1134,6 +1134,18 @@
                     "synonyms": [
                         "album"
                     ]
+                },
+                {
+                    "key": "PLAYLIST",
+                    "synonyms": [
+                        "playlist"
+                    ]
+                },
+                {
+                    "key": "GENRE",
+                    "synonyms": [
+                        "genre"
+                    ]
                 }
             ]
         },
