@@ -120,7 +120,7 @@ def process_event(event):
 
 def setup_controllers(ip_address, nearest_squeezebox):
   global squeeze_controller
-  squeeze_controller = squeezebox.TygarwenSqueezeBoxController(ip_address, 9000, main_squeezebox=nearest_squeezebox)
+  squeeze_controller = squeezebox.AssistantSqueezeBoxController(ip_address, 9000, main_squeezebox=nearest_squeezebox)
 
 def main():
     parser = argparse.ArgumentParser(
