@@ -2,4 +2,3 @@ google-assistant-library==1.0.0
 argparse>=1.4.0,<2
 google-auth>=1.0.1,<2
 squeezebox-controller>=0.2
-homevision_netio_controller>=0.1.1
