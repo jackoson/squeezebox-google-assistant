@@ -127,13 +127,17 @@ def process_event(event):
     
     elif event.type == EventType.ON_CONVERSATION_TURN_STARTED:
       log({'type': 'listening'})
+      squeeze_controller.quiet()
+
+    elif event.type == EventType.ON_END_OF_UTTERANCE:
+      squeeze_controller.return_volume()
 
     elif event.type == EventType.ON_RENDER_RESPONSE:
       log({'type': 'google response', 'text': event.args['text']})
 
-def setup_controllers():
+def setup_controllers(nearest_squeezebox, netio_key):
   global squeeze_controller, hv_controller
-  squeeze_controller = squeezebox.TygarwenSqueezeBoxController("192.168.1.126", 9000)
+  squeeze_controller = squeezebox.TygarwenSqueezeBoxController("192.168.1.126", 9000, main_squeezebox=nearest_squeezebox)
   hv_controller = homevision.TygarwenHomeVisionController("192.168.1.138", 11090, netio_key)
 
 
@@ -164,18 +168,18 @@ def main():
                         help='path to store and read OAuth2 credentials')
     parser.add_argument('-v', '--version', action='version',
                         version='%(prog)s ' + Assistant.__version_str__())
+
     parser.add_argument('--logfile', type=str, required=False,
                         help='file to write the log to')
     parser.add_argument('--netio_key', type=str, required=True,
                         help='key to use for netio authorisation')
+    parser.add_argument('--nearest_squeezebox', type=str, required=False,
+                        help='squeezebox to mute when speaking')
 
     args = parser.parse_args()
 
     if args.logfile:
         sys.stdout = sys.stderr = Logger(args.logfile)
-        
-    global netio_key
-    netio_key = args.netio_key
 
     with open(args.credentials, 'r') as f:
         credentials = google.oauth2.credentials.Credentials(token=None,
@@ -226,7 +230,7 @@ def main():
             else:
                 print(WARNING_NOT_REGISTERED)
 
-        setup_controllers()
+        setup_controllers(args.nearest_squeezebox, args.netio_key)
 
         for event in events:
             process_event(event)
