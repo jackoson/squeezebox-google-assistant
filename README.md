@@ -24,7 +24,6 @@ cd squeezebox-google-assistant
 
 3) and run 
 ```bash
-cd squeezebox-google-assistant
 python hotword.py --project_id $project_id --device_model_id $device_model_id --ip_address <ip address of SqueezeServer>
 ```
 Uses [squeezebox-controller](https://github.com/jackoson/squeezebox-controller) to interface with the SqueezeServer.
