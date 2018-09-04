@@ -4,9 +4,11 @@ Squeezebox Voice Assistant using Google assistant SDK.
 
 When installed on a Raspberry Pi with a speaker and mic it can interact with your local SqueezeServer to control your squeezeboxes with your voice.
 
------Only works locally - no external access------
+-----Only works locally - no external access-----
 
-To set up as own project follow the instructions on googl's [help page](https://developers.google.com/assistant/sdk/guides/library/python/embed/setup)
+Voice actions only work on devices with this library installed - not on all your other google assistant devices; ie. phones
+
+To set up you have to follow the instructions on google's [help page](https://developers.google.com/assistant/sdk/guides/library/python/embed/setup) to create your own project.
 
 Then clone this repository on to Pi
 git clone https://github.com/jackoson/squeezebox-google-assistant
