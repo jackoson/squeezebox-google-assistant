@@ -22,13 +22,18 @@ wget https://dl.google.com/gactions/updates/bin/linux/arm/gactions
 chmod +x gactions
 ```
 
-2) submit squeezebox action schema to google ([further tutorial](https://developers.google.com/assistant/sdk/guides/library/python/extend/custom-actions))
+3) submit squeezebox action schema to google ([further tutorial](https://developers.google.com/assistant/sdk/guides/library/python/extend/custom-actions))
 ```bash
 ./gactions update --action_package actions.json --project <project_id>
 ./gactions test --action_package actions.json --project <project_id>
 ```
 
-3) and run 
+4) install requirements
+```bash
+python -m pip install -r requirements.txt
+```
+
+5) and run 
 ```bash
 python hotword.py --project_id <project_id> --device_model_id <device_model_id> --ip_address <ip address of SqueezeServer>
 ```
