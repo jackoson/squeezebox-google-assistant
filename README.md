@@ -14,10 +14,16 @@ Then...
 1) clone this repository on to Pi
 ```bash
 git clone https://github.com/jackoson/squeezebox-google-assistant
+cd squeezebox-google-assistant
 ```
+2) download gactions tool
+```bash
+wget https://dl.google.com/gactions/updates/bin/linux/arm/gactions
+chmod +x gactions
+```
+
 2) submit squeezebox action schema to google ([further tutorial](https://developers.google.com/assistant/sdk/guides/library/python/extend/custom-actions))
 ```bash
-cd squeezebox-google-assistant
 ./gactions update --action_package actions.json --project <project_id>
 ./gactions test --action_package actions.json --project <project_id>
 ```
