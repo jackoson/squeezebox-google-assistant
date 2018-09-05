@@ -31,7 +31,6 @@ from google.assistant.library.device_helpers import register_device
 
 import tygarwen_homevision_netio_controller as homevision
 import tygarwen_squeezebox_controller as squeezebox
-from speech_controller import speak
 
 import sys
 import datetime
@@ -61,18 +60,17 @@ class Logger(object):
 
     def flush(self):
         pass
-  
+
 def log(x):
   now = datetime.datetime.now().strftime('%F_%X')
   x['time'] = now
   print(x)
-        
+
 def process_event(event):
     """
     Args:
         event(event.Event): The current event to process.
     """
-   
     if event.type == EventType.ON_DEVICE_ACTION:
         for command, params in event.actions:
             log({'type': 'device action', 'command': command, 'params': params})
@@ -206,6 +204,9 @@ def main():
     device_model_id = args.device_model_id or device_model_id
 
     with Assistant(credentials, device_model_id) as assistant:
+        global speak
+        speak = lambda x: assistant.send_text_query("repeat after me " + x)
+
         events = assistant.start()
 
         device_id = assistant.device_id
@@ -231,6 +232,8 @@ def main():
                 print(WARNING_NOT_REGISTERED)
 
         setup_controllers(args.nearest_squeezebox, args.netio_key)
+
+        speak("Concluded Initialisation sequence. Awaiting your command.")
 
         for event in events:
             process_event(event)
