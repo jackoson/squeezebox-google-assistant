@@ -133,9 +133,6 @@ def process_event(event):
     elif event.type == EventType.ON_RENDER_RESPONSE:
       log({'type': 'google response', 'text': event.args['text']})
 
-    elif event.type == EventType.ON_START_FINISHED:
-      speak("Concluded Initialisation sequence. Awaiting your command.")
-
 def setup_controllers(nearest_squeezebox, netio_key):
   global squeeze_controller, hv_controller
   squeeze_controller = squeezebox.TygarwenSqueezeBoxController("192.168.1.126", 9000, main_squeezebox=nearest_squeezebox)
