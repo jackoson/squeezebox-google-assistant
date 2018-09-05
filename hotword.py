@@ -104,10 +104,10 @@ def process_event(event):
               e = str(e)
               speak(e)
               log({'type': 'exception', 'message': e})
-              
+
     elif event.type == EventType.ON_RECOGNIZING_SPEECH_FINISHED:
       log({'type': 'speech', 'text': event.args['text']})
-    
+
     elif event.type == EventType.ON_CONVERSATION_TURN_STARTED:
       log({'type': 'listening'})
       squeeze_controller.quiet()
