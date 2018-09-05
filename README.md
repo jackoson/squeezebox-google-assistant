@@ -67,84 +67,82 @@ python hotword.py --project_id <project_id> --device_model_id <device_model_id> 
 ```
 
 ## Supported phrases
-
 ### SqueezeBoxCommand
-($Player)? squeezebox $SBCommand
-$SBCommand (the)? ($Player)? squeezebox
+ - ($Player)? squeezebox $SBCommand
+ - $SBCommand (the)? ($Player)? squeezebox
 
 #### SBCommand
-PLAY: play
-PAUSE: pause, stop
-POWER ON: switch on, power on, turn on, on
-POWER OFF: switch off, power off, turn off, off
-VOLUME UP: volume up, turn up, louder, make louder
-VOLUME DOWN: volume down, turn down, quieter, make quieter
-SLEEP: sleep
-SLEEP SONG: sleep song
-SKIP: skip, skip song, next
-PREVIOUS: previous, go back, back
-UNSYNC: unsynchronise, unsynchronize, unsync
-SHUFFLE OFF: shuffle off
-SHUFFLE SONGS: shuffle on, shuffle song, shuffle songs
-SHUFFLE ALBUMS: shuffle album, shuffle albums
-REPEAT OFF: repeat off
-REPEAT SONG: repeat song, repeat this song, repeat on
-REPEAT PLAYLIST: repeat playlist, repeat the playlist, repeat this playlist
+ - PLAY: play
+ - PAUSE: pause, stop
+ - POWER ON: switch on, power on, turn on, on
+ - POWER OFF: switch off, power off, turn off, off
+ - VOLUME UP: volume up, turn up, louder, make louder
+ - VOLUME DOWN: volume down, turn down, quieter, make quieter
+ - SLEEP: sleep
+ - SLEEP SONG: sleep song
+ - SKIP: skip, skip song, next
+ - PREVIOUS: previous, go back, back
+ - UNSYNC: unsynchronise, unsynchronize, unsync
+ - SHUFFLE OFF: shuffle off
+ - SHUFFLE SONGS: shuffle on, shuffle song, shuffle songs
+ - SHUFFLE ALBUMS: shuffle album, shuffle albums
+ - REPEAT OFF: repeat off
+ - REPEAT SONG: repeat song, repeat this song, repeat on
+ - REPEAT PLAYLIST: repeat playlist, repeat the playlist, repeat this playlist
 
 
 ### SqueezeBoxQuery
-what is (the)? ($Player)? squeezebox $SBQuery
+ - what is (the)? ($Player)? squeezebox $SBQuery
 
 #### SBQuery
-VOLUME: volume
-NOW PLAYING: playing
+ - VOLUME: volume
+ - NOW PLAYING: playing
 
 
 ### SqueezeBoxSearch
-($Player)? squeezebox search (for)? (the)? ($SearchType)? (matching)? $SchemaOrg_Text
-($Player)? squeezebox play (the)? ($SearchType)? (matching)? $SchemaOrg_Text
+ - ($Player)? squeezebox search (for)? (the)? ($SearchType)? (matching)? $SchemaOrg_Text
+ - ($Player)? squeezebox play (the)? ($SearchType)? (matching)? $SchemaOrg_Text
 
 #### SearchType
-SONG: song, track
-ARTIST: artist, group
-ALBUM: album
-PLAYLIST: playlist
-GENRE: genre
+ - SONG: song, track
+ - ARTIST: artist, group
+ - ALBUM: album
+ - PLAYLIST: playlist
+ - GENRE: genre
 
 
 ### SqueezeBoxSpotifySearch
-($Player)? squeezebox search spotify (for)? (the)? ($SearchType)? (matching)? $SchemaOrg_Text
-($Player)? squeezebox spotify search (for)? (the)? ($SearchType)? (matching)? $SchemaOrg_Text
-($Player)? squeezebox play on spotify (the)? ($SearchType)? (matching)? $SchemaOrg_Text
-($Player)? squeezebox play (the)? ($SearchType)? (matching)? $SchemaOrg_Text on spotify
+ - ($Player)? squeezebox search spotify (for)? (the)? ($SearchType)? (matching)? $SchemaOrg_Text
+ - ($Player)? squeezebox spotify search (for)? (the)? ($SearchType)? (matching)? $SchemaOrg_Text
+ - ($Player)? squeezebox play on spotify (the)? ($SearchType)? (matching)? $SchemaOrg_Text
+ - ($Player)? squeezebox play (the)? ($SearchType)? (matching)? $SchemaOrg_Text on spotify
 
 #### SearchType
-SONG: song, track
-ARTIST: artist, group
-ALBUM: album
-PLAYLIST: playlist
-GENRE: genre
+ - SONG: song, track
+ - ARTIST: artist, group
+ - ALBUM: album
+ - PLAYLIST: playlist
+ - GENRE: genre
 
 
 ### SqueezeBoxVolume
-(set)? (the)? ($Player)? squeezebox volume (to)? $SchemaOrg_Number %
-($Player)? squeezebox (set)? (the)? volume (to)? $SchemaOrg_Number %
+ - (set)? (the)? ($Player)? squeezebox volume (to)? $SchemaOrg_Number %
+ - ($Player)? squeezebox (set)? (the)? volume (to)? $SchemaOrg_Number %
 
 
 ### SqueezeBoxSendMusic
-switch ($Player)? squeezebox $Direction $Player
+ - switch ($Player)? squeezebox $Direction $Player
 
 #### Direction
-FROM: from
-TO: to
+ - FROM: from
+ - TO: to
 
 
 ### SqueezeBoxSync
-synchronise ($Player)? squeezebox to $Player
-synchronise ($Player)? squeezebox with $Player
+ - synchronise ($Player)? squeezebox to $Player
+ - synchronise ($Player)? squeezebox with $Player
 
-
-
+## Libraries
 
 Uses [squeezebox-controller](https://github.com/jackoson/squeezebox-controller) to interface with the SqueezeServer.
 
