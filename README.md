@@ -67,6 +67,9 @@ python hotword.py --project_id <project_id> --device_model_id <device_model_id> 
 ```
 
 ## Supported phrases
+
+Notice the _Player_ is optional since the assistant caches the last used player so you only have to say it on the first command.
+
 ### SqueezeBoxCommand
  - ($Player)? squeezebox $SBCommand
  - $SBCommand (the)? ($Player)? squeezebox
