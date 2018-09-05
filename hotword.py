@@ -133,10 +133,12 @@ def process_event(event):
     elif event.type == EventType.ON_RENDER_RESPONSE:
       log({'type': 'google response', 'text': event.args['text']})
 
-def setup_controllers(nearest_squeezebox, netio_key):
+def setup_controllers(credentials_path):
   global squeeze_controller, hv_controller
-  squeeze_controller = squeezebox.TygarwenSqueezeBoxController("192.168.1.126", 9000, main_squeezebox=nearest_squeezebox)
-  hv_controller = homevision.TygarwenHomeVisionController("192.168.1.138", 11090, netio_key)
+  with open(credentials_path, "r") as f:
+    creds = json.loads(f.read())
+  squeeze_controller = squeezebox.TygarwenSqueezeBoxController(creds['squeezebox_server']['ip'], creds['squeezebox_server']['port'], main_squeezebox=creds['nearest_squeezebox'])
+  hv_controller = homevision.TygarwenHomeVisionController(creds['netio_server']['ip'], creds['netio_server']['port'], creds['netio_server']['auth_key'])
 
 
 def main():
@@ -169,10 +171,8 @@ def main():
 
     parser.add_argument('--logfile', type=str, required=False,
                         help='file to write the log to')
-    parser.add_argument('--netio_key', type=str, required=True,
-                        help='key to use for netio authorisation')
-    parser.add_argument('--nearest_squeezebox', type=str, required=False,
-                        help='squeezebox to mute when speaking')
+    parser.add_argument('--home_control_credentials', type=str, required=True,
+                        help='path of home control credentials')
 
     args = parser.parse_args()
 
@@ -231,7 +231,7 @@ def main():
             else:
                 print(WARNING_NOT_REGISTERED)
 
-        setup_controllers(args.nearest_squeezebox, args.netio_key)
+        setup_controllers(args.home_control_credentials)
 
         for event in events:
             process_event(event)
