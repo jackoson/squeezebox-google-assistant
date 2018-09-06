@@ -126,7 +126,7 @@ def setup_controllers(credentials_path):
   global squeeze_controller
   with open(credentials_path, "r") as f:
     creds = json.loads(f.read())
-  squeeze_controller = squeezebox.TygarwenSqueezeBoxController(creds['squeezebox_server']['ip'], creds['squeezebox_server']['port'], main_squeezebox=creds['nearest_squeezebox'])
+  squeeze_controller = squeezebox.AssistantSqueezeBoxController(creds['squeezebox_server']['ip'], creds['squeezebox_server']['port'], main_squeezebox=creds['nearest_squeezebox'])
 
 def setup_speech(assistant):
   global speak, disable_response, speaking
