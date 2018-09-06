@@ -109,8 +109,12 @@ def process_event(event):
       log({'type': 'speech', 'text': event.args['text']})
 
     elif event.type == EventType.ON_CONVERSATION_TURN_STARTED:
-      log({'type': 'listening'})
-      squeeze_controller.quiet()
+      global speaking
+      if speaking:
+        disable_response()
+      else:
+        log({'type': 'listening'})
+        squeeze_controller.quiet()
 
     elif event.type == EventType.ON_END_OF_UTTERANCE:
       squeeze_controller.return_volume()
@@ -123,6 +127,20 @@ def setup_controllers(credentials_path):
   with open(credentials_path, "r") as f:
     creds = json.loads(f.read())
   squeeze_controller = squeezebox.AssistantSqueezeBoxController(creds['squeezebox_server']['ip'], creds['squeezebox_server']['port'], main_squeezebox=creds['nearest_squeezebox'])
+
+def setup_speech(assistant):
+  global speak, disable_response, speaking
+  def speak(x):
+    global speaking
+    assistant.send_text_query("repeat after me " + x)
+    speaking = True
+
+  speaking = False
+
+  def disable_response():
+    global speaking
+    speaking = False
+    assistant.stop_conversation()
 
 def main():
     parser = argparse.ArgumentParser(
@@ -187,8 +205,6 @@ def main():
     device_model_id = args.device_model_id or device_model_id
 
     with Assistant(credentials, device_model_id) as assistant:
-        global speak
-        speak = lambda x: assistant.send_text_query("repeat after me " + x)
 
         events = assistant.start()
 
@@ -215,6 +231,7 @@ def main():
                 print(WARNING_NOT_REGISTERED)
 
         setup_controllers(args.home_control_credentials)
+        setup_speech(assistant)
 
         for event in events:
             process_event(event)
