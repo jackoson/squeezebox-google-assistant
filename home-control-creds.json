@@ -1,0 +1,7 @@
+{
+  "squeezebox_server" : {
+    "ip" : "192.168.X.XXX",
+    "port" : 9000
+  },
+  "nearest_squeezebox" : "XXX"
+}

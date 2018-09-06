@@ -61,9 +61,12 @@ chmod +x gactions
 python -m pip install -r requirements.txt
 ```
 
-6) and run 
+6) Fill in server credentials in home-control-credentials.json
+
+
+7) and run 
 ```bash
-python hotword.py --project_id <project_id> --device_model_id <device_model_id> --ip_address <ip address of SqueezeServer>
+python hotword.py --project_id <project_id> --device_model_id <device_model_id> --home_control_credentials home-control-credentials.json
 ```
 
 ## Supported phrases
