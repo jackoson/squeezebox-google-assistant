@@ -118,9 +118,11 @@ def process_event(event):
     elif event.type == EventType.ON_RENDER_RESPONSE:
       log({'type': 'google response', 'text': event.args['text']})
 
-def setup_controllers(ip_address, nearest_squeezebox):
+def setup_controllers(credentials_path):
   global squeeze_controller
-  squeeze_controller = squeezebox.AssistantSqueezeBoxController(ip_address, 9000, main_squeezebox=nearest_squeezebox)
+  with open(credentials_path, "r") as f:
+    creds = json.loads(f.read())
+  squeeze_controller = squeezebox.TygarwenSqueezeBoxController(creds['squeezebox_server']['ip'], creds['squeezebox_server']['port'], main_squeezebox=creds['nearest_squeezebox'])
 
 def main():
     parser = argparse.ArgumentParser(
@@ -150,12 +152,10 @@ def main():
     parser.add_argument('-v', '--version', action='version',
                         version='%(prog)s ' + Assistant.__version_str__())
 
-    parser.add_argument('--ip_address', type=str, required=True,
-                        help='ip address of squeeze server')
     parser.add_argument('--logfile', type=str, required=False,
                         help='file to write the log to')
-    parser.add_argument('--nearest_squeezebox', type=str, required=False,
-                        help='squeezebox to mute when speaking')
+    parser.add_argument('--home_control_credentials', type=str, required=True,
+                        help='path of home control credentials')
 
     args = parser.parse_args()
 
@@ -214,7 +214,7 @@ def main():
             else:
                 print(WARNING_NOT_REGISTERED)
 
-        setup_controllers(args.ip_address, args.nearest_squeezebox)
+        setup_controllers(args.home_control_credentials)
 
         for event in events:
             process_event(event)
