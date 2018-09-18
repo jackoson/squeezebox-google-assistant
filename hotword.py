@@ -108,19 +108,23 @@ def process_event(event):
     elif event.type == EventType.ON_RECOGNIZING_SPEECH_FINISHED:
       log({'type': 'speech', 'text': event.args['text']})
 
-    elif event.type == EventType.ON_CONVERSATION_TURN_STARTED:
-      global speaking
-      if speaking:
-        disable_response()
-      else:
-        log({'type': 'listening'})
-        squeeze_controller.quiet()
-
-    elif event.type == EventType.ON_END_OF_UTTERANCE:
-      squeeze_controller.return_volume()
-
     elif event.type == EventType.ON_RENDER_RESPONSE:
       log({'type': 'google response', 'text': event.args['text']})
+
+    elif event.type == EventType.ON_CONVERSATION_TURN_STARTED:
+      log({'type': 'listening'})
+
+
+
+    if event.type in [EventType.ON_CONVERSATION_TURN_STARTED, EventType.ON_RESPONDING_STARTED]:
+      squeeze_controller.quiet()
+      log({'type': 'quiet'})
+
+    elif event.type in [EventType.ON_END_OF_UTTERANCE, EventType.ON_RESPONDING_FINISHED]:
+      squeeze_controller.return_volume()
+      log({'type': 'return volume'})
+
+
 
 def setup_controllers(credentials_path):
   global squeeze_controller
@@ -129,18 +133,9 @@ def setup_controllers(credentials_path):
   squeeze_controller = squeezebox.AssistantSqueezeBoxController(creds['squeezebox_server']['ip'], creds['squeezebox_server']['port'], main_squeezebox=creds['nearest_squeezebox'])
 
 def setup_speech(assistant):
-  global speak, disable_response, speaking
+  global speak
   def speak(x):
-    global speaking
     assistant.send_text_query("repeat after me " + x)
-    speaking = True
-
-  speaking = False
-
-  def disable_response():
-    global speaking
-    speaking = False
-    assistant.stop_conversation()
 
 def main():
     parser = argparse.ArgumentParser(
