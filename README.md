@@ -61,8 +61,7 @@ chmod +x gactions
 python -m pip install -r requirements.txt
 ```
 
-6) Fill in server credentials in home-control-credentials.json
-
+6) Fill in server credentials in home-control-credentials.json. (The `nearest_squeezebox` field selects which player to quieten when speaking commands. This can be set to None)
 
 7) and run 
 ```bash
