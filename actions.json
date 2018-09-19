@@ -221,6 +221,52 @@
                 }
             }
         },
+        { "name": "com.example.actions.SqueezeBoxSleep",
+            "availability": { "deviceClasses": [ { "assistantSdkDevice": {} } ] },
+            "intent": {
+                "name": "com.example.intents.SqueezeBoxSleep",
+                "parameters": [
+                    {
+                        "name": "player",
+                        "type": "Player"
+                    },
+                    {
+                        "name": "time",
+                        "type": "SchemaOrg_Number"
+                    }
+                ],
+                "trigger": {
+                    "queryPatterns": [
+                        "($Player:player)? squeezebox sleep (in)? $SchemaOrg_Number:time (minutes)?",
+                        "sleep ($Player:player)? squeezebox (in)? $SchemaOrg_Number:time (minutes)?",
+                        "($Player:player)? squeezebox sleep (in)? $SchemaOrg_Number:time minute",
+                        "sleep ($Player:player)? squeezebox (in)? $SchemaOrg_Number:time minute"
+                    ]
+                }
+            },
+            "fulfillment": {
+                "staticFulfillment": {
+                    "templatedResponse": {
+                        "items": [
+                            {
+                                "simpleResponse": {
+                                    "textToSpeech": "sleeping in $time minutes"
+                                }
+                            },
+                            {
+                                "deviceExecution": {
+                                    "command": "com.example.commands.SqueezeBoxSleep",
+                                    "params": {
+                                        "player": "$player",
+                                        "time": "$time"
+                                    }
+                                }
+                            }
+                        ]
+                    }
+                }
+            }
+        },
         { "name": "com.example.actions.SqueezeBoxSendMusic",
             "availability": { "deviceClasses": [ { "assistantSdkDevice": {} } ] },
             "intent": {
@@ -375,7 +421,11 @@
                 {
                     "key": "SLEEP SONG",
                     "synonyms": [
-                        "sleep song"
+                        "sleep song",
+                        "sleep end of song",
+                        "sleep at end of song",
+                        "sleep at the end of song",
+                        "sleep at the end of the song"
                     ]
                 },
                 {
