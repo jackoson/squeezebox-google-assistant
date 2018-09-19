@@ -90,6 +90,8 @@ def process_event(event):
                   log({'type': 'squeezebox response', 'message': ans})
               elif command == "com.example.commands.SqueezeBoxVolume":
                   squeeze_controller.set_volume(params)
+              elif command == "com.example.commands.SqueezeBoxSleep":
+                  squeeze_controller.sleep_in(params)
               elif command == "com.example.commands.SqueezeBoxSendMusic":
                   squeeze_controller.send_music(params)
               elif command == "com.example.commands.SqueezeBoxSync":
