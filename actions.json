@@ -131,6 +131,95 @@
                 }
             }
         },
+        { "name": "com.example.actions.SqueezeBoxPlayNext",
+            "availability": { "deviceClasses": [ { "assistantSdkDevice": {} } ] },
+            "intent": {
+                "name": "com.example.intents.SqueezeBoxPlayNext",
+                "parameters": [
+                    {
+                        "name": "player",
+                        "type": "Player"
+                    },
+                    {
+                        "name": "term",
+                        "type": "SchemaOrg_Text"
+                    },
+                    {
+                        "name": "type",
+                        "type": "SearchType"
+                    }
+                ],
+                "trigger": {
+                    "queryPatterns": [
+                        "($Player:player)? squeezebox play next (the)? ($SearchType:type)? (matching)? $SchemaOrg_Text:term",
+                        "($Player:player)? squeezebox play (the)? ($SearchType:type)? (matching)? $SchemaOrg_Text:term next"
+                    ]
+                }
+            },
+            "fulfillment": {
+                "staticFulfillment": {
+                    "templatedResponse": {
+                        "items": [
+                            {
+                                "deviceExecution": {
+                                    "command": "com.example.commands.SqueezeBoxPlayNext",
+                                    "params": {
+                                        "player": "$player",
+                                        "term": "$term",
+                                        "type": "$type"
+                                    }
+                                }
+                            }
+                        ]
+                    }
+                }
+            }
+        },
+        { "name": "com.example.actions.SqueezeBoxPlayEnd",
+            "availability": { "deviceClasses": [ { "assistantSdkDevice": {} } ] },
+            "intent": {
+                "name": "com.example.intents.SqueezeBoxPlayEnd",
+                "parameters": [
+                    {
+                        "name": "player",
+                        "type": "Player"
+                    },
+                    {
+                        "name": "term",
+                        "type": "SchemaOrg_Text"
+                    },
+                    {
+                        "name": "type",
+                        "type": "SearchType"
+                    }
+                ],
+                "trigger": {
+                    "queryPatterns": [
+                        "($Player:player)? squeezebox queue (the)? ($SearchType:type)? (matching)? $SchemaOrg_Text:term",
+                        "($Player:player)? squeezebox add to (the)? end (of the queue)? (the)? ($SearchType:type)? (matching)? $SchemaOrg_Text:term",
+                        "($Player:player)? squeezebox add (the)? ($SearchType:type)? (matching)? $SchemaOrg_Text:term to (the)? end (of the queue)?"
+                    ]
+                }
+            },
+            "fulfillment": {
+                "staticFulfillment": {
+                    "templatedResponse": {
+                        "items": [
+                            {
+                                "deviceExecution": {
+                                    "command": "com.example.commands.SqueezeBoxPlayEnd",
+                                    "params": {
+                                        "player": "$player",
+                                        "term": "$term",
+                                        "type": "$type"
+                                    }
+                                }
+                            }
+                        ]
+                    }
+                }
+            }
+        },
         { "name": "com.example.actions.SqueezeBoxSpotifySearch",
             "availability": { "deviceClasses": [ { "assistantSdkDevice": {} } ] },
             "intent": {

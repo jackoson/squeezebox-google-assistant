@@ -84,6 +84,14 @@ def process_event(event):
                   ans = str(squeeze_controller.search_and_play(params))
                   speak(ans)
                   log({'type': 'squeezebox response', 'message': ans})
+              elif command == "com.example.commands.SqueezeBoxPlayNext":
+                  ans = str(squeeze_controller.search_and_play_next(params))
+                  speak(ans)
+                  log({'type': 'squeezebox response', 'message': ans})
+              elif command == "com.example.commands.SqueezeBoxPlayEnd":
+                  ans = str(squeeze_controller.search_and_play_end(params))
+                  speak(ans)
+                  log({'type': 'squeezebox response', 'message': ans})
               elif command == "com.example.commands.SqueezeBoxSpotifySearch":
                   ans = str(squeeze_controller.spotify_search_and_play(params))
                   speak(ans)
