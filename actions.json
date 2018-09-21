@@ -583,6 +583,14 @@
                         "repeat the playlist",
                         "repeat this playlist"
                     ]
+                },
+                {
+                    "key": "MUTE",
+                    "synonyms": [
+                        "mute",
+                        "shut up",
+                        "shut it"
+                    ]
                 }
             ]
         },
