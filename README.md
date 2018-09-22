@@ -19,30 +19,7 @@ git clone https://github.com/jackoson/squeezebox-google-assistant
 cd squeezebox-google-assistant
 ```
 
-2) Add your players to the actions.json
-
-Under _types_ find the type with _name: $Player_. In the _entities_ list, add an object for each squeezebox.
-```
-{
-  ...
-  "types": [
-    ...
-    {
-      "name": "$Player",
-      "entities": [
-          {
-              "key": "<player name on squeeze server>",
-              "synonyms": [
-                  "what you call the player"
-              ]
-          }
-      ]
-    },
-    ...
-  ],
-  ...
-}
-```
+2) [not needed]
 
 3) download gactions tool
 ```bash
