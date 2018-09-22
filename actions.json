@@ -16,13 +16,13 @@
                     },
                     {
                         "name": "player",
-                        "type": "Player"
+                        "type": "SchemaOrg_Text"
                     }
                 ],
                 "trigger": {
                     "queryPatterns": [
-                        "($Player:player)? squeezebox $SBCommand:command",
-                        "$SBCommand:command (the)? ($Player:player)? squeezebox"
+                        "($SchemaOrg_Text:player)? squeezebox $SBCommand:command",
+                        "$SBCommand:command (the)? ($SchemaOrg_Text:player)? squeezebox"
                     ]
                 }
             },
@@ -60,12 +60,12 @@
                     },
                     {
                         "name": "player",
-                        "type": "Player"
+                        "type": "SchemaOrg_Text"
                     }
                 ],
                 "trigger": {
                     "queryPatterns": [
-                        "what is (the)? ($Player:player)? squeezebox $SBQuery:query"
+                        "what is (the)? ($SchemaOrg_Text:player)? squeezebox $SBQuery:query"
                     ]
                 }
             },
@@ -94,7 +94,7 @@
                 "parameters": [
                     {
                         "name": "player",
-                        "type": "Player"
+                        "type": "SchemaOrg_Text"
                     },
                     {
                         "name": "term",
@@ -107,8 +107,8 @@
                 ],
                 "trigger": {
                     "queryPatterns": [
-                        "($Player:player)? squeezebox search (for)? (the)? ($SearchType:type)? (matching)? $SchemaOrg_Text:term",
-                        "($Player:player)? squeezebox play (the)? ($SearchType:type)? (matching)? $SchemaOrg_Text:term"
+                        "($SchemaOrg_Text:player)? squeezebox search (for)? (the)? ($SearchType:type)? (matching)? $SchemaOrg_Text:term",
+                        "($SchemaOrg_Text:player)? squeezebox play (the)? ($SearchType:type)? (matching)? $SchemaOrg_Text:term"
                     ]
                 }
             },
@@ -138,7 +138,7 @@
                 "parameters": [
                     {
                         "name": "player",
-                        "type": "Player"
+                        "type": "SchemaOrg_Text"
                     },
                     {
                         "name": "term",
@@ -151,8 +151,8 @@
                 ],
                 "trigger": {
                     "queryPatterns": [
-                        "($Player:player)? squeezebox play next (the)? ($SearchType:type)? (matching)? $SchemaOrg_Text:term",
-                        "($Player:player)? squeezebox play (the)? ($SearchType:type)? (matching)? $SchemaOrg_Text:term next"
+                        "($SchemaOrg_Text:player)? squeezebox play next (the)? ($SearchType:type)? (matching)? $SchemaOrg_Text:term",
+                        "($SchemaOrg_Text:player)? squeezebox play (the)? ($SearchType:type)? (matching)? $SchemaOrg_Text:term next"
                     ]
                 }
             },
@@ -182,7 +182,7 @@
                 "parameters": [
                     {
                         "name": "player",
-                        "type": "Player"
+                        "type": "SchemaOrg_Text"
                     },
                     {
                         "name": "term",
@@ -195,9 +195,9 @@
                 ],
                 "trigger": {
                     "queryPatterns": [
-                        "($Player:player)? squeezebox queue (the)? ($SearchType:type)? (matching)? $SchemaOrg_Text:term",
-                        "($Player:player)? squeezebox add to (the)? end (of the queue)? (the)? ($SearchType:type)? (matching)? $SchemaOrg_Text:term",
-                        "($Player:player)? squeezebox add (the)? ($SearchType:type)? (matching)? $SchemaOrg_Text:term to (the)? end (of the queue)?"
+                        "($SchemaOrg_Text:player)? squeezebox queue (the)? ($SearchType:type)? (matching)? $SchemaOrg_Text:term",
+                        "($SchemaOrg_Text:player)? squeezebox add to (the)? end (of the queue)? (the)? ($SearchType:type)? (matching)? $SchemaOrg_Text:term",
+                        "($SchemaOrg_Text:player)? squeezebox add (the)? ($SearchType:type)? (matching)? $SchemaOrg_Text:term to (the)? end (of the queue)?"
                     ]
                 }
             },
@@ -227,7 +227,7 @@
                 "parameters": [
                     {
                         "name": "player",
-                        "type": "Player"
+                        "type": "SchemaOrg_Text"
                     },
                     {
                         "name": "term",
@@ -240,10 +240,10 @@
                 ],
                 "trigger": {
                     "queryPatterns": [
-                        "($Player:player)? squeezebox search spotify (for)? (the)? ($SearchType:type)? (matching)? $SchemaOrg_Text:term",
-                        "($Player:player)? squeezebox spotify search (for)? (the)? ($SearchType:type)? (matching)? $SchemaOrg_Text:term",
-                        "($Player:player)? squeezebox play on spotify (the)? ($SearchType:type)? (matching)? $SchemaOrg_Text:term",
-                        "($Player:player)? squeezebox play (the)? ($SearchType:type)? (matching)? $SchemaOrg_Text:term on spotify"
+                        "($SchemaOrg_Text:player)? squeezebox search spotify (for)? (the)? ($SearchType:type)? (matching)? $SchemaOrg_Text:term",
+                        "($SchemaOrg_Text:player)? squeezebox spotify search (for)? (the)? ($SearchType:type)? (matching)? $SchemaOrg_Text:term",
+                        "($SchemaOrg_Text:player)? squeezebox play on spotify (the)? ($SearchType:type)? (matching)? $SchemaOrg_Text:term",
+                        "($SchemaOrg_Text:player)? squeezebox play (the)? ($SearchType:type)? (matching)? $SchemaOrg_Text:term on spotify"
                     ]
                 }
             },
@@ -273,7 +273,7 @@
                 "parameters": [
                     {
                         "name": "player",
-                        "type": "Player"
+                        "type": "SchemaOrg_Text"
                     },
                     {
                         "name": "percent",
@@ -282,8 +282,8 @@
                 ],
                 "trigger": {
                     "queryPatterns": [
-                        "(set)? (the)? ($Player:player)? squeezebox volume (to)? $SchemaOrg_Number:percent %",
-                        "($Player:player)? squeezebox (set)? (the)? volume (to)? $SchemaOrg_Number:percent %"
+                        "(set)? (the)? ($SchemaOrg_Text:player)? squeezebox volume (to)? $SchemaOrg_Number:percent %",
+                        "($SchemaOrg_Text:player)? squeezebox (set)? (the)? volume (to)? $SchemaOrg_Number:percent %"
                     ]
                 }
             },
@@ -317,7 +317,7 @@
                 "parameters": [
                     {
                         "name": "player",
-                        "type": "Player"
+                        "type": "SchemaOrg_Text"
                     },
                     {
                         "name": "time",
@@ -326,10 +326,10 @@
                 ],
                 "trigger": {
                     "queryPatterns": [
-                        "($Player:player)? squeezebox sleep (in)? $SchemaOrg_Number:time (minutes)?",
-                        "sleep ($Player:player)? squeezebox (in)? $SchemaOrg_Number:time (minutes)?",
-                        "($Player:player)? squeezebox sleep (in)? $SchemaOrg_Number:time minute",
-                        "sleep ($Player:player)? squeezebox (in)? $SchemaOrg_Number:time minute"
+                        "($SchemaOrg_Text:player)? squeezebox sleep (in)? $SchemaOrg_Number:time (minutes)?",
+                        "sleep ($SchemaOrg_Text:player)? squeezebox (in)? $SchemaOrg_Number:time (minutes)?",
+                        "($SchemaOrg_Text:player)? squeezebox sleep (in)? $SchemaOrg_Number:time minute",
+                        "sleep ($SchemaOrg_Text:player)? squeezebox (in)? $SchemaOrg_Number:time minute"
                     ]
                 }
             },
@@ -363,11 +363,11 @@
                 "parameters": [
                     {
                         "name": "player",
-                        "type": "Player"
+                        "type": "SchemaOrg_Text"
                     },
                     {
                         "name": "other",
-                        "type": "Player"
+                        "type": "SchemaOrg_Text"
                     },
                     {
                         "name": "direction",
@@ -376,7 +376,7 @@
                 ],
                 "trigger": {
                     "queryPatterns": [
-                        "switch ($Player:player)? squeezebox $Direction:direction $Player:other"
+                        "switch ($SchemaOrg_Text:player)? squeezebox $Direction:direction $SchemaOrg_Text:other"
                     ]
                 }
             },
@@ -411,17 +411,17 @@
                 "parameters": [
                     {
                         "name": "player",
-                        "type": "Player"
+                        "type": "SchemaOrg_Text"
                     },
                     {
                         "name": "other",
-                        "type": "Player"
+                        "type": "SchemaOrg_Text"
                     }
                 ],
                 "trigger": {
                     "queryPatterns": [
-                        "synchronise ($Player:player)? squeezebox to $Player:other",
-                        "synchronise ($Player:player)? squeezebox with $Player:other"
+                        "synchronise ($SchemaOrg_Text:player)? squeezebox to $SchemaOrg_Text:other",
+                        "synchronise ($SchemaOrg_Text:player)? squeezebox with $SchemaOrg_Text:other"
                     ]
                 }
             },
@@ -606,16 +606,6 @@
                     "key": "NOW PLAYING",
                     "synonyms": [
                         "playing"
-                    ]
-                }
-            ]
-        },
-        { "name": "$Player",
-            "entities": [
-                {
-                    "key": "<player name on squeeze server>",
-                    "synonyms": [
-                        "what you call the player"
                     ]
                 }
             ]
